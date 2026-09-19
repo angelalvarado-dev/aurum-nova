@@ -17,7 +17,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="AURUM NOVA — Angel Santiago Alvarado Rodriguez, CEO">
-<meta name="twitter:description" content="IA aplicada a ventas y crecimiento empresarial. Socio colaborador para empresas y microempresas.">
+<meta property="twitter:description" content="IA aplicada a ventas y crecimiento empresarial. Socio colaborador para empresas y microempresas.">
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -737,7 +737,10 @@ footer {
 @media(max-width: 380px) { .wa-float svg { width: 22px; } }
 
 /* =============================================
-   SCROLL REVEAL
+   SCROLL REVEAL — ROBUSTO: si el observer falla, el contenido
+   sigue visible. Los elementos .reveal ya vienen con opacity:0,
+   pero si el JS falla, se corrijan al hacer add('visible') antes de
+   intentar el observer.
    ============================================= */
 
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.2, .7, .2, 1), transform .7s cubic-bezier(.2, .7, .2, 1); }
@@ -871,7 +874,6 @@ footer {
 
       <div class="hero-visual reveal">
         <div class="portrait-frame">
-          <!-- Reemplazar src con tu foto real: assets/portrait.png o la ruta que uses -->
           <img
             class="portrait-img"
             src="https://images.unsplash.com/photo-1550745165-9bc0b2527263?w=600&q=80"
@@ -1188,6 +1190,26 @@ footer {
 </footer>
 
 <script>
+"use strict";
+
+/* =============================================
+   CONTENIDO ESCALABLE — edit these arrays
+   Agrega/edita proyectos, avances y posts aquí
+   ============================================= */
+
+const PROJECTS = [
+  {
+    title: "Próximamente — casos de estudio",
+    category: "En construcción",
+    desc: "Estoy seleccionando proyectos piloto con empresas y microempresas para los próximos meses. Si tenés un problema de ventas, procesos o datos, contactame: estoy aceptando proyectos de casos de estudio con condición especial.",
+    more: "Quiero ser caso →",
+    img: "",
+    metrics: [
+      { v: "Piloto", l: "Proyectos abiertos" },
+      { v: "Condición", l: "Especial de lanzamiento" }
+    ]
+  }
+];
 
 const TIMELINE = [
   { date: "2026", title: "Inicio de AURUM NOVA", desc: "Fundación de la empresa. CEO / fundador. Trabajo solo, modelo escalable a equipo.", done: true, status: "live" },
@@ -1196,7 +1218,7 @@ const TIMELINE = [
 ];
 
 const BLOG = [
-  { date: "Sep 2026", title: "Cómo aplico IA a ventas sin perder el toque humano", desc: "Mi enfoque para usar inteligencia artificial en ventas, leads y procesos — lo que funciona, lo que no, y cómo lo aplico con empresas y microempresas.", link: "blog/cómo-aplico-ia-a-ventas-sin-perder-el-toque-humano.html", draft: false },
+  { date: "Sep 2026", title: "Cómo aplico IA a ventas sin perder el toque humano", desc: "Mi enfoque para usar inteligencia artificial en ventas, leads y procesos — lo que funciona, lo que no, y cómo lo aplico con empresas y microempresas.", link: "blog/como-aplico-ia-ventas-sin-perder-el-toque-humano.html", draft: false },
   { date: "Sep 2026", title: "Cómo usar IA para segmentar leads sin depender de un CRM caro", desc: "Tres formas prácticas de segmentar y priorizar leads usando herramientas de IA accesibles, sin comprar software costoso. Para empresas y microempresas.", link: "#", draft: false }
 ];
 
@@ -1212,24 +1234,25 @@ if (portfolioGrid) {
         <p style="font-size:0.9rem;margin-top:8px;color:var(--text-muted)">Próximamente casos de estudio reales.<br>Edita el array <code style="color:var(--gold)">PROJECTS</code> en este archivo para agregarlos.</p>
       </div>`;
   } else {
-    portfolioGrid.innerHTML = PROJECTS.map(p => `
-      <article class="project-card">
-        <div class="project-thumb" style="background:${p.img ? 'url('+p.img+') center/cover' : 'linear-gradient(135deg,#191930,#060610)'}">
-          ${p.img ? '' : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>'}
-          <span class="thumb-label">${p.category || 'PROYECTO'}</span>
-        </div>
-        <div class="project-body">
-          <span class="pe">${p.category || 'Proyecto'}</span>
-          <h3>${p.title}</h3>
-          <p>${p.desc}</p>
-          ${p.metrics && p.metrics.length ? `
-          <div class="metrics">
-            ${p.metrics.map(m => `
-            <div class="m"><span class="v">${m.v}</span><span class="l">${m.l}</span></div>`).join('')}
-          </div>` : ''}
-          <a href="#contact" class="more">${p.more}</a>
-        </div>
-      </article>`).join('');
+    portfolioGrid.innerHTML = PROJECTS.map(function(p) {
+      return `
+        <article class="project-card">
+          <div class="project-thumb" style="background:${p.img ? 'url('+p.img+') center/cover' : 'linear-gradient(135deg,#191930,#060610)'}">
+            ${p.img ? '' : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>'}
+            <span class="thumb-label">${p.category || 'PROYECTO'}</span>
+          </div>
+          <div class="project-body">
+            <span class="pe">${p.category || 'Proyecto'}</span>
+            <h3>${p.title}</h3>
+            <p>${p.desc}</p>
+            ${p.metrics && p.metrics.length ? `
+            <div class="metrics">
+              ${p.metrics.map(function(m) { return `<div class="m"><span class="v">${m.v}</span><span class="l">${m.l}</span></div>`; }).join('')}
+            </div>` : ''}
+            <a href="#contact" class="more">${p.more}</a>
+          </div>
+        </article>`;
+    }).join('');
   }
 }
 
@@ -1238,21 +1261,22 @@ const timelineWrap = document.getElementById('timelineWrap');
 const timelineLine = document.getElementById('timelineLine');
 const timelineLineDone = document.getElementById('timelineLineDone');
 if (timelineWrap) {
-  const hasDone = TIMELINE.some(t => t.done);
+  const hasDone = TIMELINE.some(function(t) { return t.done; });
   timelineLine.style.display = hasDone ? 'none' : '';
   timelineLineDone.style.display = hasDone ? '' : 'none';
-  timelineWrap.querySelectorAll('.timeline-item, .timeline-line, .timeline-line-done').forEach(el => el.remove());
-  timelineWrap.insertAdjacentHTML('beforeend', TIMELINE.map(t => `
-    <div class="timeline-item ${t.done ? 'done' : ''}">
-      <div class="timeline-dot"></div>
-      <div>
-        <div class="timeline-date">${t.date}</div>
-        <h3>${t.title}</h3>
-        <p>${t.desc}</p>
-        <div class="status ${t.status || ''}"><span class="s-dot"></span>${t.status === 'live' ? 'En progreso' : t.status === 'planned' ? 'Próximamente' : 'Pendiente'}</div>
-      </div>
-    </div>
-  `).join(''));
+  timelineWrap.querySelectorAll('.timeline-item, .timeline-line, .timeline-line-done').forEach(function(el) { el.remove(); });
+  timelineWrap.insertAdjacentHTML('beforeend', TIMELINE.map(function(t) {
+    return `
+      <div class="timeline-item ${t.done ? 'done' : ''}">
+        <div class="timeline-dot"></div>
+        <div>
+          <div class="timeline-date">${t.date}</div>
+          <h3>${t.title}</h3>
+          <p>${t.desc}</p>
+          <div class="status ${t.status || ''}"><span class="s-dot"></span>${t.status === 'live' ? 'En progreso' : t.status === 'planned' ? 'Próximamente' : 'Pendiente'}</div>
+        </div>
+      </div>`;
+  }).join(''));
 }
 
 /* ---------- Render blog ---------- */
@@ -1267,39 +1291,71 @@ if (blogList) {
         <p style="font-size:0.9rem;margin-top:8px;color:var(--text-muted)">Próximamente publicaciones. Edita el array <code style="color:var(--gold)">BLOG</code> en este archivo.</p>
       </div>`;
   } else {
-    blogList.innerHTML = BLOG.map(b => `
-      <article class="blog-item">
-        <div class="meta">
-          <span>${b.date}</span>
-          ${b.draft ? '<span class="draft">Borrador</span>' : '<span>Publicado</span>'}
-        </div>
-        <h3>${b.title}</h3>
-        <p>${b.desc}</p>
-        <a href="${b.link}" class="read-more">${b.draft ? 'Leer borrador' : 'leer →'}</a>
-      </article>`).join('');
+    blogList.innerHTML = BLOG.map(function(b) {
+      return `
+        <article class="blog-item">
+          <div class="meta">
+            <span>${b.date}</span>
+            ${b.draft ? '<span class="draft">Borrador</span>' : '<span>Publicado</span>'}
+          </div>
+          <h3>${b.title}</h3>
+          <p>${b.desc}</p>
+          <a href="${b.link}" class="read-more">${b.draft ? 'Leer borrador' : 'leer →'}</a>
+        </article>`;
+    }).join('');
   }
 }
 
-/* ---------- Scroll reveal ---------- */
-const revealEls = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.12, rootMargin: '0px 0px -25px 0px' });
-revealEls.forEach(el => observer.observe(el));
+/* ---------- Scroll reveal — ROBUSTO ----------
+   Estrategia: primero hacer visibles todos los .reveal (fallback de seguridad),
+   luego intentar IntersectionObserver para el efecto de aparición suave.
+   Si el observer falla, el contenido sigue visible gracias al add('visible') de arriba.
+   */
+(function() {
+  const revealEls = document.querySelectorAll('.reveal');
+  if (revealEls.length) {
+    // 1. Hacer visibles inmediatamente (evita contenido oculto si el JS falla)
+    for (let i = 0; i < revealEls.length; i++) {
+      const el = revealEls[i];
+      el.classList.add('visible');
+      // Resetear transformaciones anteriores para evitar problemas
+      el.style.transform = '';
+      el.style.opacity = '';
+    }
+    // 2. Intentar IntersectionObserver para efecto suave
+    try {
+      const observer = new IntersectionObserver(function(entries) {
+        for (let i = 0; i < entries.length; i++) {
+          if (entries[i].isIntersecting) {
+            entries[i].target.classList.add('visible');
+          }
+        }
+      }, { threshold: 0.05, rootMargin: '0px 0px -15px 0px' });
+      for (let i = 0; i < revealEls.length; i++) {
+        observer.observe(revealEls[i]);
+      }
+    } catch (err) {
+      // Si falla, ya están visibles por el add('visible') de arriba
+      console.warn('Scroll reveal: usando modo fallback (IntersectionObserver no disponible)');
+    }
+  }
+})();
 
 /* ---------- Mobile menu ---------- */
 const menuToggle = document.getElementById('menuToggle');
 const mobileMenu = document.getElementById('mobileMenu');
 if (menuToggle && mobileMenu) {
-  menuToggle.addEventListener('click', () => {
+  menuToggle.addEventListener('click', function() {
     const open = mobileMenu.style.display === 'flex';
     mobileMenu.style.display = open ? 'none' : 'flex';
-    menuToggle.innerHTML = open
-      ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'
-      : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+    if (open) {
+      menuToggle.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+    } else {
+      menuToggle.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+    }
   });
-  mobileMenu.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
+  mobileMenu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
       mobileMenu.style.display = 'none';
       menuToggle.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
     });
@@ -1328,7 +1384,9 @@ if (contactForm && FORMSPREE_URL) {
     note.textContent = '';
     try {
       const payload = {
-        name, email, message: msg,
+        name: name,
+        email: email,
+        message: msg,
         company: company || undefined,
         phone: phone || undefined,
         topic: topic || undefined,
@@ -1340,16 +1398,16 @@ if (contactForm && FORMSPREE_URL) {
         headers: { 'Accept': 'application/json' },
         body: JSON.stringify(payload)
       });
-      const data = await res.json().catch(() => ({}));
+      const data = await res.json().catch(function() { return {}; });
       if (res.ok && (data.ok === true || data.next)) {
         note.textContent = '✓ Gracias, ' + name.split(' ')[0] + '. Te respondo en menos de 24 h hábiles a ' + email;
         note.style.color = 'var(--gold)';
         btn.textContent = 'Enviado — gracias';
-        setTimeout(() => {
+        setTimeout(function() {
           btn.textContent = 'Enviar — Plaza un día';
           note.style.color = '';
           note.textContent = '↓ tus datos no se comparten. Respuesta en < 24 h hábiles.';
-          this.reset();
+          contactForm.reset();
         }, 4500);
       } else {
         console.error('Formspree error:', data);
@@ -1367,12 +1425,15 @@ if (contactForm && FORMSPREE_URL) {
 }
 
 /* ---------- Smooth anchor fallback ---------- */
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
     const id = a.getAttribute('href');
     if (id.length > 1) {
       const el = document.querySelector(id);
-      if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      if (el) {
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
   });
 });
