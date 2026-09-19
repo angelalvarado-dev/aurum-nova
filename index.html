@@ -1367,58 +1367,64 @@ if(menuToggle && mobileMenu){
   });
 }
 
-/* ---------- Form handler — envía a Formspree ---------- */
+/* ---------- Form handler — envía a Formspree (API JSON) ---------- */
 const contactForm = document.getElementById('contactForm');
 const FORMSPREE_URL = contactForm ? contactForm.action : '';
 if(contactForm && FORMSPREE_URL){
-  // Agregar subject si no existe
-  if(!contactForm.querySelector('input[name="_subject"]')){
-    const subj = document.createElement('input');
-    subj.type = 'hidden';
-    subj.name = '_subject';
-    subj.value = 'Nuevo mensaje de contacto — AURUM NOVA';
-    contactForm.appendChild(subj);
-  }
-  contactForm.addEventListener('submit',function(e){
+  contactForm.addEventListener('submit',async function(e){
     e.preventDefault();
     const btn = this.querySelector('button[type=submit]');
     const note = this.querySelector('.form-note');
     const name = this.querySelector('#f-name').value.trim();
     const email = this.querySelector('#f-email').value.trim();
     const msg = this.querySelector('#f-msg').value.trim();
+    const company = this.querySelector('#f-company').value.trim();
+    const phone = this.querySelector('#f-phone').value.trim();
+    const topic = this.querySelector('#f-topic').value;
     if(!name){ alert('Por favor escribe tu nombre.'); return; }
     if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ alert('Por favor escribe un email válido.'); return; }
     if(!msg){ alert('Escribe un mensaje, aunque sea breve.'); return; }
     btn.disabled = true;
     btn.textContent = 'Enviando…';
     note.textContent = '';
-    fetch(FORMSPREE_URL, {
-      method:'POST',
-      body: new FormData(this),
-      redirect:'follow'
-    }).then(r => {
-      // Formspree puede devolver 200 (JSON ok:true) o 302 (redirect a /thanks).
-      // Ambas se consideran éxito mientras r.ok sea true.
-      if(r.ok){
-        return { ok: true };
+    try{
+      // Formspree API JSON: POST con body JSON, Content-Type application/json
+      const payload = {
+        name, email, message: msg,
+        company: company || undefined,
+        phone: phone || undefined,
+        topic: topic || undefined,
+        _subject: 'Nuevo mensaje de contacto — AURUM NOVA',
+        _replyto: email
+      };
+      const res = await fetch(FORMSPREE_URL, {
+        method:'POST',
+        headers:{ 'Accept':'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json().catch(()=>({}));
+      if(res.ok && (data.ok === true || data.next)){
+        note.textContent = '✓ Gracias, '+name.split(' ')[0]+'. Te respondo en menos de 24 h hábiles a '+email;
+        note.style.color = 'var(--gold)';
+        btn.textContent = 'Enviado — gracias';
+        setTimeout(()=>{
+          btn.textContent = 'Enviar — Plaza un día';
+          note.style.color = '';
+          note.textContent = '↓ tus datos no se comparten. Respuesta en < 24 h hábiles.';
+          this.reset();
+        },4500);
       }else{
-        return Promise.reject(new Error('HTTP ' + r.status));
-      }
-    }).then(()=>{
-      note.textContent = '✓ Gracias, '+name.split(' ')[0]+'. Te respondo en menos de 24 h hábiles a '+email;
-      note.style.color = 'var(--gold)';
-      btn.textContent = 'Enviado — gracias';
-      setTimeout(()=>{
+        console.error('Formspree error:', data);
+        alert('No pude enviar el mensaje. Intentá nuevamente o escribime por WhatsApp.');
+        btn.disabled = false;
         btn.textContent = 'Enviar — Plaza un día';
-        note.style.color = '';
-        note.textContent = '↓ tus datos no se comparten. Respuesta en < 24 h hábiles.';
-        this.reset();
-      },4500);
-    }).catch(err=>{
+      }
+    }catch(err){
+      console.error('Form submit error:', err);
       alert('Error de conexión. Volvé a intentarlo o contactame por WhatsApp.');
       btn.disabled = false;
       btn.textContent = 'Enviar — Plaza un día';
-    });
+    }
   });
 }
 
