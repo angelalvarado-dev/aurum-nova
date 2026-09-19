@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cómo aplico IA a ventas sin perder el toque humano — AURUM NOVA</title>
+<meta name="description" content="Mi enfoque para usar inteligencia artificial en ventas, leads y procesos — lo que funciona, lo que no, y cómo lo aplico con empresas y microempresas.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#050509">
+<meta name="author" content="Angel Santiago Alvarado Rodriguez">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Cómo aplico IA a ventas sin perder el toque humano — AURUM NOVA">
+<meta property="og:description" content="Mi enfoque para usar inteligencia artificial en ventas, leads y procesos — lo que funciona, lo que no, y cómo lo aplico con empresas y microempresas.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1550745165-9bc0b2527263?w=1200&q=80">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-09-19">
+<meta property="article:author" content="https://github.com/aurum-ceo">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cómo aplico IA a ventas sin perder el toque humano — AURUM NOVA">
+<meta name="twitter:description" content="Mi enfoque para usar inteligencia artificial en ventas, leads y procesos — lo que funciona, lo que no, y cómo lo aplico con empresas y microempresas.">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #050509;
+  --bg-2: #080810;
+  --bg-3: #0b0b14;
+  --bg-card: #0d0d1a;
+  --bg-card-2: #111123;
+  --border: rgba(212, 175, 55, 0.14);
+  --border-strong: rgba(212, 175, 55, 0.42);
+  --gold: #d4af37;
+  --gold-2: #e8c85a;
+  --gold-3: #b8962e;
+  --gold-soft: rgba(212, 175, 55, 0.08);
+  --gold-glow: rgba(212, 175, 55, 0.55);
+  --cyan: #4fd6e0;
+  --text: #efe9de;
+  --text-muted: #a09c93;
+  --text-dim: #5c5952;
+  --maxw: 780px;
+  --radius: 16px;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --mono: 'JetBrains Mono', 'Courier New', Consolas, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans); background: var(--bg); color: var(--text);
+  line-height: 1.7; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(212, 175, 55, 0.04) 0%, transparent 70%);
+}
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-2); }
+::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.25); border-radius: 4px; }
+::selection { background: var(--gold); color: #050509; }
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; position: relative; z-index: 2; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 12px 0; background: rgba(5, 5, 9, 0.8);
+  backdrop-filter: blur(18px) saturate(170%); -webkit-backdrop-filter: blur(18px) saturate(170%);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.09);
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1180px; margin: 0 auto; padding: 0 28px; gap: 16px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.05rem; letter-spacing: -0.02em; color: var(--text); text-decoration: none; }
+.brand .mark { width: 30px; height: 30px; border-radius: 6px; background: linear-gradient(135deg, var(--gold-2), var(--gold-3)); display: grid; place-items: center; color: #050509; font-weight: 900; font-size: 0.95rem; box-shadow: 0 3px 10px -2px var(--gold-glow); font-family: var(--serif); }
+.brand .name { color: var(--gold); }
+.brand-sub { color: var(--text-muted); font-weight: 500; font-size: 0.78rem; margin-left: 2px; }
+.nav-links { display: flex; gap: 24px; }
+@media(max-width: 640px) { .nav-links { display: none; } }
+.nav-links a { color: var(--text-muted); font-size: 0.82rem; transition: color .2s; }
+.nav-links a:hover { color: var(--gold); }
+.menu-toggle { display: none; background: none; border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 1.3rem; cursor: pointer; padding: 6px 10px; }
+@media(max-width: 640px) { .menu-toggle { display: block; } }
+
+/* ARTICLE */
+.article-header { padding: 120px 0 32px; }
+.article-header .meta {
+  font-family: var(--mono); font-size: 0.68rem; color: var(--text-dim);
+  letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px;
+  display: flex; gap: 16px; flex-wrap: wrap;
+}
+.article-header .meta .sep { color: var(--text-faint); }
+.article-header .meta a { color: var(--gold); }
+.article-header h1 {
+  font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700; line-height: 1.15;
+  letter-spacing: -0.02em; margin-bottom: 20px; max-width: 780px;
+}
+.article-header .lead { font-size: 1.1rem; color: var(--text-muted); line-height: 1.7; max-width: 640px; margin-bottom: 24px; }
+.article-header .author {
+  margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px;
+}
+.article-header .author .mark {
+  width: 36px; height: 36px; border-radius: 6px;
+  background: linear-gradient(135deg, var(--gold-2), var(--gold-3));
+  display: grid; place-items: center; color: #050509; font-weight: 900; font-size: 1.1rem;
+  box-shadow: 0 4px 12px -2px var(--gold-glow); font-family: var(--serif);
+}
+.article-header .author .info { font-size: 0.88rem; }
+.article-header .author .name { color: var(--text); font-weight: 600; }
+.article-header .author .role { color: var(--text-muted); font-size: 0.78rem; }
+
+.article-body { padding: 0 0 60px; }
+.article-body > p { margin-bottom: 18px; font-size: 0.96rem; line-height: 1.75; color: var(--text-muted); max-width: 66ch; }
+.article-body > h2 { font-size: 1.5rem; font-weight: 700; margin: 40px 0 16px; color: var(--text); letter-spacing: -0.01em; }
+.article-body > h2 .gold { color: var(--gold); }
+.article-body > h3 { font-size: 1.15rem; font-weight: 600; margin: 28px 0 10px; color: var(--text); }
+.article-body > strong { color: var(--text); }
+.article-body > em { color: var(--text); font-style: italic; }
+.article-body > ul, .article-body > ol { margin: 12px 0 18px 24px; color: var(--text-muted); }
+.article-body > li { margin-bottom: 8px; line-height: 1.65; }
+.article-body > strong { color: var(--text); }
+
+.article-callout {
+  margin: 36px 0; padding: 24px; border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--bg-card), var(--bg-card-2));
+  border: 1px solid var(--border); border-left: 3px solid var(--gold);
+}
+.article-callout p { margin-bottom: 0; }
+.article-callout .label {
+  font-family: var(--mono); font-size: 0.64rem; color: var(--gold);
+  letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px;
+}
+
+.article-back {
+  margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border);
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.article-back a { color: var(--text-muted); font-size: 0.84rem; }
+.article-back a:hover { color: var(--gold); }
+
+/* FOOTER */
+footer { padding: 32px 0 24px; border-top: 1px solid var(--border); position: relative; z-index: 2; background: rgba(8, 8, 15, 0.3); }
+.footer-inner { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+@media(min-width: 640px) { .footer-inner { flex-direction: row; justify-content: space-between; }
+.footer-copy { font-size: 0.72rem; color: var(--text-dim); font-family: var(--mono); }
+.footer-links { display: flex; gap: 18px; }
+.footer-links a { color: var(--text-dim); font-size: 0.78rem; transition: color .2s; }
+.footer-links a:hover { color: var(--gold); }
+}
+
+/* RESPONSIVE */
+@media(max-width: 620px) { .wrap { padding: 0 18px; } nav { padding: 10px 0; } .nav-inner { padding: 0 18px; } }
+@media(prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="https://aurum-ceo.github.io/aurum-nova/" class="brand">
+      <span class="mark">A</span>
+      <span class="name">AURUM</span> NOVA<span class="brand-sub">· CEO</span>
+    </a>
+    <div class="nav-links">
+      <a href="https://aurum-ceo.github.io/aurum-nova/#about">Sobre mí</a>
+      <a href="https://aurum-ceo.github.io/aurum-nova/#services">Servicios</a>
+      <a href="https://aurum-ceo.github.io/aurum-nova/#portfolio">Portafolio</a>
+      <a href="https://aurum-ceo.github.io/aurum-nova/#contact">Contacto</a>
+    </div>
+    <button class="menu-toggle" aria-label="Abrir menú" style="display:none">☰</button>
+  </div>
+</nav>
+
+<!-- ARTICLE -->
+<main class="wrap">
+  <div class="article-header">
+    <div class="meta">
+      <span>Artículo</span>
+      <span class="sep">·</span>
+      <span>Septiembre 2026</span>
+      <span class="sep">·</span>
+      <span>8 min de lectura</span>
+    </div>
+    <h1>Cómo aplico inteligencia artificial a ventas sin perder el toque humano</h1>
+    <p class="lead">Mi enfoque para usar IA en ventas, leads y procesos — lo que funciona, lo que no, y cómo lo aplico con empresas y microempresas.</p>
+    <div class="author">
+      <div class="mark">A</div>
+      <div class="info">
+        <div class="name">Angel Santiago Alvarado Rodriguez</div>
+        <div class="role">CEO · Fundador · AURUM NOVA</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-body">
+
+<p>Desde hace algunos meses estoy trabajando en la intersección entre dos cosas que suelen vivir separadas: <strong>inteligencia artificial</strong> y <strong>ventas reales</strong>.</p>
+
+<p>No me refiero a "automatizá todo y dejá que la máquina venda". Eso no funciona — o funciona mal y nadie lo nota hasta que los leads se secan o los clientes se cansan.</p>
+
+<p>Me refiero a algo más concreto: <strong>usar IA como herramienta de juicio, no como reemplazo de juicio</strong>. Acelerar lo que ya debería funcionar, no inventar procesos donde no hay nada sólido.</p>
+
+<p>Ésto es lo que hago cuando entro como socio colaborador en una empresa o microempresa. Ésto es lo que he visto funcionar — y lo que no.</p>
+
+<h2>1. El problema que veo repetirse</h2>
+
+<p>Cuando una empresa (o microempresa) me contacta, usualmente hay una de estas tres situaciones:</p>
+
+<p><strong>Primera:</strong> tienen datos pero no los usan. Tienen ventas, tienen clientes, tienen chats, tienen correos — pero no están segmentando, no están priorizando, no están aprendiendo de lo que ya sucede.</p>
+
+<p><strong>Segunda:</strong> tienen IA "puesta" pero no resuelve nada. Instalaron alguna herramienta, o probaron unas prompts, o leyeron un tutorial — pero no hay un proceso claro detrás. La herramienta existe, el problema no se resolvió.</p>
+
+<p><strong>Tercera:</strong> tienen procesos manuales que consumen tiempo sin valor. Clasificar leads a mano, redactar respuestas repetidas, seguir up sin estrategia, reportes que nadie lee — y el tiempo se va.</p>
+
+<p>En los tres casos, el tema no es la IA. El tema es <strong>falta de criterio</strong> sobre qué parte del proceso vale la pena mejorar, y cómo.</p>
+
+<h2>2. Mi enfoque: cuatro preguntas antes de tocar cualquier cosa</h2>
+
+<p>Antes de sugerir herramienta alguna, hago cuatro preguntas. Si no se pueden responder, no es momento de IA — es momento de claridad.</p>
+
+<h3>2.1 ¿Qué decisión se está tomando hoy, y vale la pena automatizarla?</h3>
+
+<p>No todo vale la pena. La mayoría de las cosas que la gente quiere automatizar son cosas que, si se pensaran bien, no deberían existir. O deberían existir de otra forma.</p>
+
+<p>Vale la pena automatizar:</p>
+<ul>
+  <li>Clasificación de leads por probabilidad de cierre (si hay datos para entrenar o heurísticas claras)</li>
+  <li>Respuestas a consultas frecuentes (no genéricas — basadas en contexto real)</li>
+  <li>Follow-up sistemático (no spam, sino seguimiento con criterio)</li>
+  <li>Reportes que se consumen (si se leen y se toman decisiones)</li>
+</ul>
+
+<p>No vale la pena (o no es el orden correcto):</p>
+<ul>
+  <li>Automatizar una venta que no tiene funnel claro</li>
+  <li>Reemplazar la relación humano en etapas tempranas sin una razón sólida</li>
+  <li>Construir dashboards que nadie revisa</li>
+</ul>
+
+<h3>2.2 ¿Cuál es la parte del proceso que consume la mayor cantidad de tiempo sin agregar valor perceptible?</h3>
+
+<p>Algunas veces es clasificación. Otras, redacción de mensajería. Otras, reportes que se generan y nunca se abren.</p>
+
+<p>La clave: <strong>identificar el cuello de botella real</strong>, no el que parece importante por haber mucha gente hablando de él.</p>
+
+<h3>2.3 ¿Qué datos tengo, y de qué calidad son?</h3>
+
+<p>IA no inventa datos. Si los datos están mal, o faltan, o no se están registrando — lo primero no es implementar IA, es empezar a registrar lo que importa.</p>
+
+<p>Y "datos" no significa solo CRM. Puede ser:</p>
+<ul>
+  <li>Historial de conversaciones (emails, chats, llamadas)</li>
+  <li>Resultados de campañas (qué mensajería funcionó con qué tipo de prospecto)</li>
+  <li>Feedback de clientes (qué les dio valor, qué les generó fricción)</li>
+  <li>Tiempo dedicado a cada etapa del proceso</li>
+</ul>
+
+<h3>2.4 ¿Cuál es el resultado que queremos mejorar?</h3>
+
+<p>No "mejorar las ventas" — demasiado vago. Resultado concreto:</p>
+<ul>
+  <li>Menos tiempo de seguimiento manual por lead</li>
+  <li>Mayor tasa de respuesta a emails de cold outreach</li>
+  <li>Menor tiempo en clasificar/organizar leads</li>
+  <li>Más reuniones agendadas con prospectos calificados</li>
+  <li>Menos errores en procesos manuales</li>
+</ul>
+
+<p>Cuando el resultado es concreto, es medible. Y se puede decir si la intervención funcionó o no.</p>
+
+<h2>3. Lo que he visto funcionar</h2>
+
+<h3>3.1 Segmentación inteligente de leads</h3>
+
+<p>Cuando una empresa tiene muchos leads entrando (por ads, referidos, cold outreach, etc.), lo primero que veo es que no están segmentando. Todos reciben lo mismo. Todos son tratados como si tuvieran la misma probabilidad.</p>
+
+<p>Lo que funciona:</p>
+<ul>
+  <li>Clasificar por señales de intención (qué hizo, cuánto tiempo, qué dijo, de dónde vino)</li>
+  <li>Priorizar por probabilidad de cierre, no por orden de llegada</li>
+  <li>Personalizar mensajería mínimamente (no personalización superficial — algo que muestre que te interesó su contexto real)</li>
+</ul>
+
+<p>La IA aquí ayuda a <strong>clasificar y priorizar</strong> — no a reemplazar el juicio humano sobre cuál es el siguiente paso con ese lead.</p>
+
+<h3>3.2 Mensajería con contexto, no spam con variables</h3>
+
+<p>Mucha gente piensa que "personalizar" es poner <code style="color:var(--gold)">{Nombre}</code> en un email. Eso no es personalización — es insignificante.</p>
+
+<p>Lo que funciona:</p>
+<ul>
+  <li>Mensajería que demuestre que conocés algo real del prospecto (su industria, su situación, algo que viste en su web, algo que te dijo)</li>
+  <li>Follow-up que añade valor (no solo "¿cómo estás?")</li>
+  <li>Tono que coincida con la etapa del proceso (no pedir cierre en el primer mensaje)</li>
+</ul>
+
+<p>La IA ayuda a <strong>generar variaciones, esbozar estructuras, y acelerar la escritura</strong> — pero el criterio de qué decirle a quién en qué momento viene del humano.</p>
+
+<h3>3.3 Reportes que se consumen</h3>
+
+<p>Muchas empresas tienen reportes que nadie lee. Porque son largos, o están mal enfocados, o no responden a la pregunta que importa.</p>
+
+<p>Lo que funciona:</p>
+<ul>
+  <li>Definir primero qué pregunta necesita responder el negocio</li>
+  <li>Construir el reporte en función de esa pregunta</li>
+  <li>Hacerlo accesible (no solo datos — interpretación, tendencia, sugerencia)</li>
+</ul>
+
+<p>La IA puede ayudar a <strong>resumir, organizar, y sugerir interpretaciones</strong> — pero el humano decide qué importa.</p>
+
+<h2>4. Lo que no funciona (o funciona mal)</h2>
+
+<h3>4.1 IA como reemplazo de estrategia</h3>
+
+<p>Si inserto una IA en un proceso que no tiene estrategia, obtengo un proceso sin estrategia acelerado. No mejora el resultado — solo lo hace más rápido mal.</p>
+
+<h3>4.2 Automatización sin criterio de intervención</h3>
+
+<p>No todo debe automatizarse. Hay momentos donde la intervención humana es el valor (etapas tempranas de relación, negociaciones complejas, situaciones donde el contexto es delicado).</p>
+
+<p>La pregunta clave: <strong>¿automatizar para ganar tiempo, o automatizar para perder el toque humano que valía la pena?</strong></p>
+
+<h3>4.3 Herramientas sin proceso</h3>
+
+<p>Instalar una herramienta de IA sin antes definir qué problema resuelve, qué datos usa, qué resultado esperás — usualmente termina en una herramienta que nadie usa, o que genera ruido.</p>
+
+<h3>4.4 IA como excusa para no mirar los datos</h3>
+
+<p>Decir "voy a usar IA" es más glamoroso que "necesito empezar a registrar quién entra, de dónde, y qué le pasa después". Pero el segundo es más importante.</p>
+
+<h2>5. Herramientas que uso (y cómo las uso)</h2>
+
+<p>No soy adicto a herramientas. Uso lo que resuelve el problema concreto, sin sobre-engineerar.</p>
+
+<p>Algunas categorías que recurro:</p>
+<ul>
+  <li><strong>IA para generación de texto</strong> (emails, estructuras de mensajería, esquemas de seguimiento) — como asistente de escritura, no como reemplazo del juicio.</li>
+  <li><strong>Automatización simple</strong> (conectar A con B, triggers, flujos de trabajo) — para eliminar pasos manuales repetitivos donde hay criterio claro.</li>
+  <li><strong>Análisis de datos básico</strong> (segmentación, tendencias, priorización) — para entender qué está pasando y tomar mejores decisiones.</li>
+</ul>
+
+<p>Lo que no hago: sobre-complicar. Si un problema se resuelve con un proceso más simple y un criterio más claro, no necesito IA.</p>
+
+<h2>6. Cómo empiezo cuando entro a una empresa</h2>
+
+<p>Cuando arranco con una empresa o microempresa, el orden es:</p>
+
+<ol>
+  <li><strong>Entender el problema real</strong> — no lo que ellos creen que es el problema, sino lo que observo.</li>
+  <li><strong>Identificar dónde está el tiempo perdido</strong> — qué procesos consumen recursos sin agregar valor claramente.</li>
+  <li><strong>Proponer una intervención concreta</strong> — una cosa que se puede medir, con resultado esperado claro.</li>
+  <li><strong>Implementar y medir</strong> — no "implementar y esperar". Ver si mejoró el resultado medible.</li>
+  <li><strong>Escalar si funciona</strong> — si la intervención dio resultado, extenderla a otras áreas similares.</li>
+</ol>
+
+<p>No entro proponiendo un sistema complejo. Entro proponiendo una cosa que mejore algo medible.</p>
+
+<h2>7. Un ejemplo conceptual (no un caso real — aún)</h2>
+
+<p>Imagina una microempresa de servicios (pizzería, consultoría pequeña, taller, etc.) que tiene:</p>
+<ul>
+  <li>Pedidos/leads entrando por varios canales (web, WhatsApp, referidos, walk-in)</li>
+  <li>Sin segmentación clara de quién es más valioso</li>
+  <li>Seguimiento manual y desorganizado</li>
+  <li>Reportes espontáneos, no sistemáticos</li>
+</ul>
+
+<p>Lo que haría yo como primer paso:</p>
+
+<ol>
+  <li><strong>Clasificar los leads entrantes</strong> por señales básicas (de dónde vino, qué pidió, cuándo, si ya había interacción previa)</li>
+  <li><strong>Priorizar</strong> los que tienen mayor señal de intención real (no necesariamente más pronto — sino más prometedores)</li>
+  <li><strong>Estandarizar el seguimiento</strong> mínimo: un mensaje de acuse, un recordatorio de seguimiento, una forma de anotar el resultado</li>
+  <li><strong>Medir</strong>: cuántos leads se convierten, cuánto tiempo se gasta en seguimiento, cuál es la tasa de respuesta</li>
+</ol>
+
+<p>Esto no requiere sistema complejo. Requiere criterio, disciplina, y — en algunos pasos — IA para acelerar la clasificación y la redacción de mensajería.</p>
+
+<h2>8. Lo que no prometo</h2>
+
+<p>No les prometo que la IA resuelva todo. No les prometo resultados mágicos. No les prometo automatizar toda la operación y vivir del puro pasivo.</p>
+
+<p>Les prometo: <strong>una intervención con criterio, enfocada en algo medible, que mejorará algo real.</strong> Y si no hay nada claro para empezar, te lo digo — y empezamos por donde hay claridad.</p>
+
+<h2>9. ¿Para quién es esto?</h2>
+
+<p>Para empresas y microempresas que:</p>
+<ul>
+  <li>Tienen ventas, clientes, o procesos — pero no los están aprovechando del todo</li>
+  <li>Tienen datos pero no los usan para decidir</li>
+  <li>Quieren usar IA pero no saben por dónde empezar de forma que resuelva algo real</li>
+  <li>Están dispuestos a medir y ajustar, no solo a instalar herramientas</li>
+</ul>
+
+<p>Si no está en eso, probablemente no sea momento de IA todavía — es momento de claridad.</p>
+
+<h2>10. Cierre</h2>
+
+<p>Mi enfoque no es "IA para todo". Es "IA donde tiene sentido, con criterio, enfocada en resultados medibles".</p>
+
+<p>Si estás pensando en usar inteligencia artificial en tus ventas o procesos, y querés empezar con algo concreto que se pueda medir — podemos conversarlo. No vendo horas ni sistemas complejos. Entrego resultados en lo que me pides, con criterio y transparencia.</p>
+
+<p>Si querés leer más sobre esto, o tenés un caso específico que querés analizar — escribime.</p>
+
+<div class="article-callout">
+  <div class="label">Contacto</div>
+  <p><strong>aurum.nova.business@gmail.com</strong> — escribime por email o WhatsApp <strong>+593 99 419 5932</strong>. Te respondo en menos de 24 h hábiles.</p>
+</div>
+
+</div>
+
+  <div class="article-back">
+    <a href="https://aurum-ceo.github.io/aurum-nova/">← Volver al inicio</a>
+    <span class="sep">·</span>
+    <span>© 2026 AURUM NOVA · Angel Santiago Alvarado Rodriguez</span>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <a href="https://aurum-ceo.github.io/aurum-nova/" class="brand" style="font-size:0.95rem">AURUM NOVA</a>
+    <div class="footer-links">
+      <a href="https://aurum-ceo.github.io/aurum-nova/#about">Sobre mí</a>
+      <a href="https://aurum-ceo.github.io/aurum-nova/#services">Servicios</a>
+      <a href="https://aurum-ceo.github.io/aurum-nova/#contact">Contacto</a>
+    </div>
+    <div class="footer-copy">© 2026 Angel Santiago Alvarado Rodriguez · CEO · AURUM NOVA</div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/593994195932?text=Hola%20Angel%2C%20me%20interesa%20tu%20servicio"
+   class="wa-float" target="_blank" rel="noopener"
+   aria-label="WhatsApp directo — +593 99 419 5932">
+  <span class="wa-pulse" aria-hidden="true"></span>
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:28px;height:28px">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"></path>
+  </svg>
+</a>
+
+</body>
+</html>
