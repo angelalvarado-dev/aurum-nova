@@ -1367,9 +1367,10 @@ if(menuToggle && mobileMenu){
   });
 }
 
-/* ---------- Form handler (simulado — conecta backend real cuando esté listo) ---------- */
+/* ---------- Form handler — envía a Formspree ---------- */
 const contactForm = document.getElementById('contactForm');
-if(contactForm){
+const FORMSPREE_URL = contactForm ? contactForm.action : '';
+if(contactForm && FORMSPREE_URL){
   contactForm.addEventListener('submit',function(e){
     e.preventDefault();
     const btn = this.querySelector('button[type=submit]');
@@ -1382,23 +1383,32 @@ if(contactForm){
     if(!msg){ alert('Escribe un mensaje, aunque sea breve.'); return; }
     btn.disabled = true;
     btn.textContent = 'Enviando…';
-    // TODO: reemplazar con fetch real a tu backend/email cuando lo tengas listo.
-    // Ejemplo conceptual:
-    // fetch('/api/contact', { method:'POST', body: new FormData(this) })
-    //   .then(r => r.ok ? success() : alert('Error al enviar'))
-    //   .catch(() => alert('Error de conexión'))
-    setTimeout(()=>{
-      note.textContent = '✓ Gracias, '+name.split(' ')[0]+'. Te respondo en menos de 24 h hábiles a '+email;
-      note.style.color = 'var(--gold)';
-      btn.textContent = 'Enviado — gracias';
-      btn.disabled = false;
-      setTimeout(()=>{
+    note.textContent = '';
+    fetch(FORMSPREE_URL, {
+      method:'POST',
+      body: new FormData(this),
+      keepalive:true
+    }).then(r => {
+      if(r.ok){
+        note.textContent = '✓ Gracias, '+name.split(' ')[0]+'. Te respondo en menos de 24 h hábiles a '+email;
+        note.style.color = 'var(--gold)';
+        btn.textContent = 'Enviado — gracias';
+        setTimeout(()=>{
+          btn.textContent = 'Enviar — Plaza un día';
+          note.style.color = '';
+          note.textContent = '↓ tus datos no se comparten. Respuesta en < 24 h hábiles.';
+          this.reset();
+        },4500);
+      }else{
+        alert('No pude enviar el mensaje. Intentá nuevamente o escribime por WhatsApp.');
+        btn.disabled = false;
         btn.textContent = 'Enviar — Plaza un día';
-        note.style.color = '';
-        note.textContent = '↓ tus datos no se comparten. Respuesta en < 24 h hábiles.';
-        this.reset();
-      },4500);
-    },900);
+      }
+    }).catch(()=>{
+      alert('Error de conexión. Volvé a intentarlo o contactame por WhatsApp.');
+      btn.disabled = false;
+      btn.textContent = 'Enviar — Plaza un día';
+    });
   });
 }
 
