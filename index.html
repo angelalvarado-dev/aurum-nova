@@ -165,7 +165,12 @@ a:hover { border-bottom-color: var(--gold); }
   transform: translateY(-3px);
   box-shadow: 0 8px 24px -12px rgba(212, 175, 55, 0.2);
 }
-.btn:disabled { opacity: .45; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
+.btn-primary:focus-visible, .btn-ghost:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.15);
+}
 
 /* =============================================
    NAV
@@ -227,9 +232,16 @@ nav {
   .nav-inner { flex-direction: column; }
 }
 
-.menu-toggle {
-  display: none; background: none; border: 1px solid var(--border); border-radius: 8px;
-  color: var(--text); font-size: 1.3rem; cursor: pointer; padding: 6px 10px; transition: border-color .2s;
+.nav-links a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+  border-radius: 2px;
+  color: var(--text);
+}
+.menu-toggle:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-color: var(--gold);
 }
 .menu-toggle:hover { border-color: var(--border-strong); }
 @media(max-width: 760px) { .menu-toggle { display: block; } }
@@ -701,7 +713,16 @@ footer {
   transition: color .2s, border-color .2s;
 }
 .footer-links a.license-badge:hover { color: var(--gold); border-color: var(--border-strong); text-decoration: none; }
-.footer-links a.license-badge::after { content: ""; display: none; }
+.footer-links a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+  border-radius: 2px;
+  color: var(--text);
+}
+.footer-links a.license-badge:focus-visible {
+  outline-color: var(--gold);
+  border-color: var(--gold);
+}
 
 /* =============================================
    WHATSAPP FLOATING BUTTON
