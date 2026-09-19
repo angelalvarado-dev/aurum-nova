@@ -1371,6 +1371,14 @@ if(menuToggle && mobileMenu){
 const contactForm = document.getElementById('contactForm');
 const FORMSPREE_URL = contactForm ? contactForm.action : '';
 if(contactForm && FORMSPREE_URL){
+  // Agregar subject si no existe
+  if(!contactForm.querySelector('input[name="_subject"]')){
+    const subj = document.createElement('input');
+    subj.type = 'hidden';
+    subj.name = '_subject';
+    subj.value = 'Nuevo mensaje de contacto — AURUM NOVA';
+    contactForm.appendChild(subj);
+  }
   contactForm.addEventListener('submit',function(e){
     e.preventDefault();
     const btn = this.querySelector('button[type=submit]');
@@ -1386,10 +1394,9 @@ if(contactForm && FORMSPREE_URL){
     note.textContent = '';
     fetch(FORMSPREE_URL, {
       method:'POST',
-      body: new FormData(this),
-      keepalive:true
-    }).then(r => {
-      if(r.ok){
+      body: new FormData(this)
+    }).then(r => r.json ? r.json().then(j => ({ok: r.ok, json: j})) : Promise.resolve({ok:r.ok})).then(res => {
+      if(res.ok){
         note.textContent = '✓ Gracias, '+name.split(' ')[0]+'. Te respondo en menos de 24 h hábiles a '+email;
         note.style.color = 'var(--gold)';
         btn.textContent = 'Enviado — gracias';
