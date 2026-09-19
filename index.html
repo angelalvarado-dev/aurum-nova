@@ -1394,24 +1394,27 @@ if(contactForm && FORMSPREE_URL){
     note.textContent = '';
     fetch(FORMSPREE_URL, {
       method:'POST',
-      body: new FormData(this)
-    }).then(r => r.json ? r.json().then(j => ({ok: r.ok, json: j})) : Promise.resolve({ok:r.ok})).then(res => {
-      if(res.ok){
-        note.textContent = '✓ Gracias, '+name.split(' ')[0]+'. Te respondo en menos de 24 h hábiles a '+email;
-        note.style.color = 'var(--gold)';
-        btn.textContent = 'Enviado — gracias';
-        setTimeout(()=>{
-          btn.textContent = 'Enviar — Plaza un día';
-          note.style.color = '';
-          note.textContent = '↓ tus datos no se comparten. Respuesta en < 24 h hábiles.';
-          this.reset();
-        },4500);
+      body: new FormData(this),
+      redirect:'follow'
+    }).then(r => {
+      // Formspree puede devolver 200 (JSON ok:true) o 302 (redirect a /thanks).
+      // Ambas se consideran éxito mientras r.ok sea true.
+      if(r.ok){
+        return { ok: true };
       }else{
-        alert('No pude enviar el mensaje. Intentá nuevamente o escribime por WhatsApp.');
-        btn.disabled = false;
-        btn.textContent = 'Enviar — Plaza un día';
+        return Promise.reject(new Error('HTTP ' + r.status));
       }
-    }).catch(()=>{
+    }).then(()=>{
+      note.textContent = '✓ Gracias, '+name.split(' ')[0]+'. Te respondo en menos de 24 h hábiles a '+email;
+      note.style.color = 'var(--gold)';
+      btn.textContent = 'Enviado — gracias';
+      setTimeout(()=>{
+        btn.textContent = 'Enviar — Plaza un día';
+        note.style.color = '';
+        note.textContent = '↓ tus datos no se comparten. Respuesta en < 24 h hábiles.';
+        this.reset();
+      },4500);
+    }).catch(err=>{
       alert('Error de conexión. Volvé a intentarlo o contactame por WhatsApp.');
       btn.disabled = false;
       btn.textContent = 'Enviar — Plaza un día';
