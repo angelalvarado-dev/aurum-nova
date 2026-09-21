@@ -34,12 +34,74 @@
    ============================================= */
 
 :root {
-  --bg: #050509;
-  --bg-2: #080810;
-  --bg-3: #0b0b14;
-  --bg-card: #0d0d1a;
-  --bg-card-2: #111123;
-  --border: rgba(212, 175, 55, 0.14);
+  --bg-dark: #050509;
+  --bg-light: #ffffff;
+  --bg-2-dark: #080810;
+  --bg-2-light: #f8f9fa;
+  --bg-3-dark: #0b0b14;
+  --bg-3-light: #f1f3f5;
+  --bg-card-dark: #0d0d1a;
+  --bg-card-light: #ffffff;
+  --bg-card-2-dark: #111123;
+  --bg-card-2-light: #f8f9fa;
+  --border-dark: rgba(212, 175, 55, 0.14);
+  --border-light: rgba(212, 175, 55, 0.1);
+  --border-strong-dark: rgba(212, 175, 55, 0.42);
+  --border-strong-light: rgba(212, 175, 55, 0.3);
+  --border-glass-dark: rgba(212, 175, 55, 0.10);
+  --border-glass-light: rgba(212, 175, 55, 0.05);
+  --gold-dark: #d4af37;
+  --gold-light: #b8860b;
+  --gold-2-dark: #e8c85a;
+  --gold-2-light: #d4af37;
+  --gold-3-dark: #b8962e;
+  --gold-3-light: #b8962e;
+  --text-dark: #efe9de;
+  --text-light: #212529;
+  --text-muted-dark: #a09c93;
+  --text-muted-light: #495057;
+  --text-dim-dark: #5c5952;
+  --text-dim-light: #6c757d;
+  --text-faint-dark: #3a3a36;
+  --text-faint-light: #adb5bd;
+
+  --bg-light: #ffffff;
+  --bg-2-light: #f8f9fa;
+  --bg-3-light: #f1f3f5;
+  --bg-card-light: #ffffff;
+  --bg-card-2-light: #f8f9fa;
+  --border-light: rgba(212, 175, 55, 0.1);
+  --border-strong-light: rgba(212, 175, 55, 0.3);
+  --border-glass-light: rgba(212, 175, 55, 0.05);
+  --gold-light: #b8860b;
+  --gold-2-light: #d4af37;
+  --gold-3-light: #b8962e;
+  --text-light: #212529;
+  --text-muted-light: #495057;
+  --text-dim-light: #6c757d;
+  --text-faint-light: #adb5bd;
+n  --bg-light: #ffffff;
+  --bg-2-light: #f8f9fa;
+  --bg-3-light: #f1f3f5;
+  --bg-card-light: #ffffff;
+  --bg-card-2-light: #f8f9fa;
+  --border-light: rgba(212, 175, 55, 0.1);
+  --border-strong-light: rgba(212, 175, 55, 0.3);
+  --border-glass-light: rgba(212, 175, 55, 0.05);
+  --gold-light: #b8860b;
+  --gold-2-light: #d4af37;
+  --gold-3-light: #b8962e;
+  --text-light: #212529;
+  --text-muted-light: #495057;
+  --text-dim-light: #6c757d;
+  --text-faint-light: #adb5bd;
+
+  --bg: var(--bg-dark, #050509);
+  --bg-2-dark: #080810; --bg-2-light: #f8f9fa; --bg-2: var(--bg-2-dark, #080810);
+  --bg-3-dark: #0b0b14; --bg-3-light: #f1f3f5; --bg-3: var(--bg-3-dark, #0b0b14);
+  --bg-card-dark: #0d0d1a; --bg-card-light: #ffffff; --bg-card: var(--bg-card-dark, #0d0d1a);
+  --bg-card-2-dark: #111123; --bg-card-2-light: #f8f9fa; --bg-card-2: var(--bg-card-2-dark, #111123);
+  --border-dark: rgba(212, 175, 55, 0.14); --border-light: rgba(212, 175, 55, 0.1); --border: var(--border-dark, rgba(212, 175, 55, 0.14));
   --border-strong: rgba(212, 175, 55, 0.42);
   --border-glass: rgba(212, 175, 55, 0.10);
   --gold: #d4af37;
@@ -936,6 +998,11 @@ footer {
 <!-- NAV -->
 <nav role="navigation" aria-label="Navegación principal">
   <div class="nav-inner">
+    <button id="themeToggle" class="btn btn-ghost" aria-label="Cambiar tema" title="Cambiar entre tema oscuro y claro">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+      </svg>
+    </button>
     <a href="#top" class="brand" aria-label="AURUM NOVA">
       <span class="mark">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1595,6 +1662,40 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
 });
 </script>
 
+    <script>
+    // ---------- Theme switcher ----------
+    const themeToggle = document.getElementById("themeToggle");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+    const currentTheme = localStorage.getItem("theme");
+
+    // Set initial theme
+    const setTheme = (theme) => {
+      document.documentElement.setAttribute("data-theme", theme);
+      localStorage.setItem("theme", theme);
+    };
+
+    // Initialize theme
+    if (currentTheme) {
+      setTheme(currentTheme);
+    } else {
+      setTheme(prefersDark.matches ? "dark" : "light");
+    }
+
+    // Toggle theme
+    themeToggle.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme");
+      const newTheme = current === "dark" ? "light" : "dark";
+      setTheme(newTheme);
+      
+      // Update icon (sun/moon)
+      const icon = themeToggle.querySelector("path");
+      if (newTheme === "dark") {
+        icon.setAttribute("d", "M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z");
+      } else {
+        icon.setAttribute("d", "M12 3a1 1 0 000 2h6a4 4 0 010 8H6a4 4 0 010-8h6a1 1 0 100-2zM13 19h-1a2 2 0 01-1.433-.83l-.83-1.433A2 2 0 015 11V8a2 2 0 012-2h1a2 2 0 012 2v2a2 2 0 01-1 1.433L12 16l-1.166 1.166A2 2 0 0110 15v2a2 2 0 01-2 2H8a2 2 0 01-2-2v-2a2 2 0 011-1.433l1.166-1.166A2 2 0 0111 9h1a2 2 0 012 2v2z");
+      }
+    });
+    </script>
 <!-- WHATSAPP FLOATING BUTTON -->
 <a href="https://wa.me/593994195932?text=Hola%20Angel%2C%20me%20interesa%20tu%20servicio"
    class="wa-float" target="_blank" rel="noopener"
