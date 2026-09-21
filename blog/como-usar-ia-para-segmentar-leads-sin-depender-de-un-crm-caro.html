@@ -1,328 +1,339 @@
-1|<!DOCTYPE html>
-2|<html lang="es">
-3|<head>
-4|<meta charset="UTF-8">
-5|<meta name="viewport" content="width=device-width, initial-scale=1.0">
-6|<title>Cómo usar IA para segmentar leads sin depender de un CRM caro — AURUM NOVA</title>
-7|<meta name="description" content="Tres formas prácticas de segmentar y priorizar leads usando herramientas de IA accesibles, sin comprar software costoso. Para empresas y microempresas.">
-8|<meta name="color-scheme" content="dark">
-9|<meta name="theme-color" content="#050509">
-10|<meta name="author" content="Angel Santiago Alvarado Rodriguez">
-11|
-12|<meta property="og:title" content="Cómo usar IA para segmentar leads sin depender de un CRM caro — AURUM NOVA">
-13|<meta property="og:description" content="Tres formas prácticas de segmentar y priorizar leads usando herramientas de IA accesibles, sin comprar software costoso.">
-14|<meta property="og:image" content="https://images.unsplash.com/photo-1550745165-9bc0b2527263?w=1200&q=80">
-15|<meta property="og:type" content="article">
-16|<meta property="article:published_time" content="2026-09-21">
-17|<meta property="article:author" content="https://github.com/aurum-ceo">
-18|
-19|<meta name="twitter:card" content="summary_large_image">
-20|<meta name="twitter:title" content="Cómo usar IA para segmentar leads sin depender de un CRM caro — AURUM NOVA">
-21|<meta name="twitter:description" content="Tres formas prácticas de segmentar y priorizar leads usando herramientas de IA accesibles, sin comprar software costoso.">
-22|
-23|<link rel="preconnect" href="https://fonts.googleapis.com">
-24|<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-25|<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-26|
-27|<style>
-28|:root {
-29|  --bg: #050509; --bg-2: #080810; --bg-card: #0d0d1a; --bg-card-2: #111123;
-30|  --border: rgba(212,175,55,0.14); --border-strong: rgba(212,175,55,0.42);
-31|  --gold: #d4af37; --gold-2: #e8c85a; --gold-3: #b8962e; --gold-glow: rgba(212,175,55,0.55);
-32|  --cyan: #4fd6e0; --text: #efe9de; --text-muted: #a09c93; --text-dim: #5c5952;
-33|  --maxw: 780px; --radius: 16px;
-34|  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-35|  --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-36|  --mono: 'JetBrains Mono', 'Courier New', Consolas, monospace;
-37|}
-38|* { box-sizing: border-box; margin: 0; padding: 0; }
-39|html { scroll-behavior: smooth; }
-40|body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-41|body::before { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0; background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(212,175,55,0.04) 0%, transparent 70%); }
-42|::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: var(--bg-2); } ::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.25); border-radius: 4px; }
-43|::selection { background: var(--gold); color: #050509; }
-44|.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; position: relative; z-index: 2; }
-45|nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 12px 0; background: rgba(5,5,9,0.8); backdrop-filter: blur(18px) saturate(170%); border-bottom: 1px solid rgba(212,175,55,0.09); }
-46|.nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1180px; margin: 0 auto; padding: 0 28px; gap: 16px; }
-47|.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.05rem; letter-spacing: -0.02em; color: var(--text); text-decoration: none; }
-48|.brand .mark { width: 30px; height: 30px; border-radius: 6px; background: linear-gradient(135deg, var(--gold-2), var(--gold-3)); display: grid; place-items: center; color: #050509; font-weight: 900; font-size: 0.95rem; box-shadow: 0 3px 10px -2px var(--gold-glow); font-family: var(--serif); }
-49|.brand .name { color: var(--gold); }
-50|.brand-sub { color: var(--text-muted); font-weight: 500; font-size: 0.78rem; margin-left: 2px; }
-51|.nav-links { display: flex; gap: 24px; }
-52|@media(max-width:640px){.nav-links{display:none;}}
-53|.nav-links a { color: var(--text-muted); font-size: 0.82rem; transition: color .2s; }
-54|.nav-links a:hover { color: var(--gold); }
-55|.menu-toggle { display: none; background: none; border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 1.3rem; cursor: pointer; padding: 6px 10px; }
-56|@media(max-width:640px){.menu-toggle{display:block;}}
-57|.article-header { padding: 120px 0 32px; }
-58|.article-header .meta { font-family: var(--mono); font-size: 0.68rem; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; display: flex; gap: 16px; flex-wrap: wrap; }
-59|.article-header .meta .sep { color: var(--text-faint); }
-60|.article-header .meta a { color: var(--gold); }
-61|.article-header h1 { font-size: clamp(1.8rem,4vw,3rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 20px; max-width: 780px; }
-62|.article-header .lead { font-size: 1.1rem; color: var(--text-muted); line-height: 1.7; max-width: 640px; margin-bottom: 24px; }
-63|.article-header .author { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
-64|.article-header .author .mark { width: 36px; height: 36px; border-radius: 6px; background: linear-gradient(135deg, var(--gold-2), var(--gold-3)); display: grid; place-items: center; color: #050509; font-weight: 900; font-size: 1.1rem; box-shadow: 0 4px 12px -2px var(--gold-glow); font-family: var(--serif); }
-65|.article-header .author .info { font-size: 0.88rem; }
-66|.article-header .author .name { color: var(--text); font-weight: 600; }
-67|.article-header .author .role { color: var(--text-muted); font-size: 0.78rem; }
-68|.article-body { padding: 0 0 60px; }
-69|.article-body > p { margin-bottom: 18px; font-size: 0.96rem; line-height: 1.75; color: var(--text-muted); max-width: 66ch; }
-70|.article-body > h2 { font-size: 1.5rem; font-weight: 700; margin: 40px 0 16px; color: var(--text); letter-spacing: -0.01em; }
-71|.article-body > h3 { font-size: 1.15rem; font-weight: 600; margin: 28px 0 10px; color: var(--text); }
-72|.article-body > strong { color: var(--text); }
-73|.article-body > em { color: var(--text); font-style: italic; }
-74|.article-body > ul, .article-body > ol { margin: 12px 0 18px 24px; color: var(--text-muted); }
-75|.article-body > li { margin-bottom: 8px; line-height: 1.65; }
-76|.article-callout { margin: 36px 0; padding: 24px; border-radius: var(--radius); background: linear-gradient(180deg, var(--bg-card), var(--bg-card-2)); border: 1px solid var(--border); border-left: 3px solid var(--gold); }
-77|.article-callout p { margin-bottom: 0; }
-78|.article-callout .label { font-family: var(--mono); font-size: 0.64rem; color: var(--gold); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px; }
-79|.article-back { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-80|.article-back a { color: var(--text-muted); font-size: 0.84rem; }
-81|.article-back a:hover { color: var(--gold); }
-82|footer { padding: 32px 0 24px; border-top: 1px solid var(--border); position: relative; z-index: 2; background: rgba(8,8,15,0.3); }
-83|.footer-inner { display: flex; flex-direction: column; gap: 12px; align-items: center; }
-84|@media(min-width:640px){.footer-inner{flex-direction:row;justify-content:space-between;}}
-85|.footer-copy { font-size: 0.72rem; color: var(--text-dim); font-family: var(--mono); }
-86|.footer-links { display: flex; gap: 18px; }
-87|.footer-links a { color: var(--text-dim); font-size: 0.78rem; transition: color .2s; }
-88|.footer-links a:hover { color: var(--gold); }
-89|@media(max-width:620px){.wrap{padding:0 18px;}nav{padding:10px 0;}.nav-inner{padding:0 18px;}}
-90|@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
-91|</style>
-92|</head>
-93|<body>
-94|
-95|<nav>
-96|  <div class="nav-inner">
-97|    <a href="https://aurum-ceo.github.io/aurum-nova/" class="brand">
-98|      <span class="mark">A</span>
-99|      <span class="name">AURUM</span> NOVA<span class="brand-sub">· CEO</span>
-100|    </a>
-101|    <div class="nav-links">
-102|      <a href="https://aurum-ceo.github.io/aurum-nova/#about">Sobre mí</a>
-103|      <a href="https://aurum-ceo.github.io/aurum-nova/#services">Servicios</a>
-104|      <a href="https://aurum-ceo.github.io/aurum-nova/#portfolio">Portafolio</a>
-105|      <a href="https://aurum-ceo.github.io/aurum-nova/#contact">Contacto</a>
-106|    </div>
-107|    <button class="menu-toggle" aria-label="Abrir menú" style="display:none">☰</button>
-108|  </div>
-109|</nav>
-110|
-111|<main class="wrap">
-112|  <div class="article-header">
-113|    <div class="meta">
-114|      <span>Artículo</span><span class="sep">·</span><span>Septiembre 2026</span><span class="sep">·</span><span>7 min de lectura</span>
-115|    </div>
-116|    <h1 id="articleTitle">Cómo usar inteligencia artificial para segmentar leads sin depender de un CRM caro</h1>
-117|    <p class="lead" id="articleLead"></p>
-118|    <div class="author">
-119|      <div class="mark">A</div>
-120|      <div class="info">
-121|        <div class="name">Angel Santiago Alvarado Rodriguez</div>
-122|        <div class="role">CEO · Fundador · AURUM NOVA</div>
-123|      </div>
-124|    </div>
-125|  </div>
-126|
-127|  <div class="article-body" id="articleBody">
-1|<!-- Artículo #2: Segmentación de leads con IA -->
-2|
-3|<p>La mayoría de las empresas que empiezan a crecer tienen el mismo problema: <strong>tienen leads, pero no los están priorizando.</strong> Todos reciben lo mismo, todos entran en el mismo bucket, y el tiempo se desperdicia persiguiendo oportunidades de bajo valor mientras las buenas pasan desapercibidas.</p>
-4|
-5|<p>La solución "oficial" que venden es siempre la misma: <strong>comprá un CRM caro, integrá todo, y ahí tenés segmentación.</strong> A veces tiene sentido. A veces es como comprar un avión para ir al supermercado.</p>
-6|
-7|<p>Ésto es lo que hago cuando una empresa o microempresa me pide ayuda con leads: no empiezo proponiendo software. Empiezo con <strong>criterio + herramientas accesibles + un proceso que se pueda medir.</strong></p>
-8|
-9|<h2>1. Por qué la segmentación falla antes de cualquier herramienta</h2>
-10|
-11|<p>Antes de tocar cualquier herramienta, hay tres razones por las que la segmentación no funciona — y ninguna de ellas es "no tenés el CRM correcto":</p>
-12|
-13|<p><strong>Primera: no hay criterio de qué importa.</strong> Si no sabés qué señal indica que un lead es prometedor, cualquier herramienta te va a dar segmentación sin sentido. El software clasifica, pero vos decisión qué clase es útil.</p>
-14|
-15|<p><strong>Segunda: los datos están dispersos y no se registran.</strong> Tiene leads entrando por web, WhatsApp, referidos, cold outreach — y cada uno vive en su propio canal sin cruzarse. No hay una vista única, solo canales separados que nadie logra unificar.</p>
-16|
-17|<p><strong>Tercera: priorizan por orden de llegada, no por señal de intención.</strong> "El primero que escribió, el primero que atiendo". Eso parece justo, pero no es estratégico. A veces el lead que llegó después tiene mucho más potencial que el que llegó primero.</p>
-18|
-19|<p>Cuando estas tres cosas están presentes, comprar un CRM no resuelve el problema — solo lo traslada a otro software.</p>
-20|
-21|<h2>2. Tres formas de segmentar con IA accesible (sin CRM enterprise)</h2>
-22|
-23|<p>Estas tres formas no requieren inversión grande. Requieren <strong>datos, criterio, y un poco de disciplina.</strong> La IA acelera las partes repetitivas; el humano decide qué señales importan.</p>
-24|
-25|<h3>2.1 Clasificación por señales de intención (lo más importante)</h3>
-26|
-27|<p>No todo lead es igual. La forma más útil de segmentar es por <strong>señales de intención</strong> — evidencia de que este lead en particular está más cerca de decidir.</p>
-28|
-29|<p>Señales típicas que importan:</p>
-30|<ul>
-31|  <li><strong>De dónde vino.</strong> Un lead que llegó desde una página de precios o de casos de estudio tiene más intención que uno que vino desde el blog genérico.</li>
-32|  <li><strong>Qué preguntó.</strong> "¿Cuánto cuesta?" o "¿Tienen implementación rápida?" es más prometedor que "¿Qué son ustedes?".</li>
-33|  <li><strong>Qué hizo antes de contactar.</strong> Si vio el caso de estudio, descargó la guía, revisó el pricing — hay señal.</li>
-34|  <li><strong>Si ya tuvo interacción previa.</strong> Un lead que ya habló con ustedes antes tiene más contexto y más probabilidad de cerrar que uno totalmente nuevo.</li>
-35|</ul>
-36|
-37|<p>La IA ayuda aquí a <strong>clasificar y etiquetar</strong> estos leads de forma rápida: toma la información disponible (fuente, mensaje, comportamiento) y asigna una señal de intención. No reemplaza el criterio de qué señales son importantes — eso lo decisión vos.</p>
-38|
-39|<p>Una forma práctica de empezar sin CRM:</p>
-40|<ul>
-41|  <li>Agarra los leads de los últimos 30–60 días (los que tengas registrados, en qué formato estén).</li>
-42|  <li>Define 3–5 señales de intención que para tu negocio indican "esto se promete".</li>
-43|  <li>Usá IA para ayudarte a clasificar cada lead según esas señales — no para inventarlas.</li>
-44|  <li>Medí: cuántos de los leads "alta señal" convertieron vs. los demás. Eso te dice si el criterio funcionó.</li>
-45|</ul>
-46|
-47|<h3>2.2 Priorización por potencial, no por orden de llegada</h3>
-48|
-49|<p>Una vez que tenés señales de intención, la siguiente pregunta es: <strong>¿a quién atendés primero?</strong></p>
-50|
-51|<p>La respuesta obvia parece ser "al que llega primero". La respuesta útil es "al que más probabilidad de cierre tiene, o al que más valor puede aportar".</p>
-52|
-53|<p>Una forma simple de priorizar sin software complejo:</p>
-54|<ul>
-55|  <li>Clasificá cada lead en una de tres bandas: <strong>alta prioridad</strong> (señales claras de intención + contexto favourable), <strong>media</strong> (algo de señal pero falta contexto), <strong>baja</strong> (poca o nada de señal).</li>
-56|  <li>Atendé primero la alta. Sin importar el orden de llegada.</li>
-57|  <li>Para la media, decidí si vale la pena invertir tiempo en obtener más contexto antes de descartar.</li>
-58|  <li>Para la baja, no la descartés totalmente — guardá el contacto, pero no gastes tiempo de seguimiento activo.</li>
-59|</ul>
-60|
-61|<p>La IA acelera la clasificación en bandas. El criterio de qué hace que un lead sea "alta" viene del humano y del negocio.</p>
-62|
-63|<h3>2.3 Segmentación contextual: qué mensaje para qué tipo de lead</h3>
-64|
-65|<p>No todos los leads reciben el mismo mensaje. Un lead que llegó desde una página de precios necesita un mensaje diferente a uno que vino desde el blog. Un lead que ya tuvo una conversación previa necesita un seguimiento diferente a uno nuevo.</p>
-66|
-67|<p>Esto es lo que la mayoría no hace: <strong>segmentá el mensaje, no solo el lead.</strong></p>
-68|
-69|<p>Un ejemplo simple:</p>
-70|<ul>
-71|  <li><strong>Lead caliente (alta señal de intención):</strong> mensaje directo, con siguiente paso concreto (reunión, llamada, propuesta). No rodeos.</li>
-72|  <li><strong>Lead tibio (alguna señal pero poco contexto):</strong> mensaje que añade valor, invita a dar un paso pequeño (mirar una guía, una demo corta). No pedir cierre inmediato.</li>
-73|  <li><strong>Lead frio (poca señal):</strong> mantener el contacto, enviar contenido relevante ocasionalmente. No insistir.</li>
-74|</ul>
-75|
-76|<p>La IA ayuda a <strong>generar variaciones de mensaje para cada segmento</strong> — no a definir los segmentos. Eso lo decisión vos.</p>
-77|
-78|<h2>3. Herramientas que uso (y cómo las uso para segmentación)</h2>
-79|
-80|<p>No recomiendo software por la moda. Uso lo que resuelve el problema concreto. Para segmentación de leads, las herramientas que me sirven:</p>
-81|
-82|<ul>
-83|  <li><strong>IA para análisis de texto:</strong> leer mensajes de leads, extraer señales, clasificar. No para decidir — para procesar rápido.</li>
-84|  <li><strong>Formularios simples + registro estructurado:</strong> un formulario que capture lo que importa (de dónde vino, qué interesó, si tuvo interacción previa). Sin formularios raros que nadie completa.</li>
-85|  <li><strong>Hojas de cálculo con criterio claro:</strong> a veces la mejor herramienta es una hoja bien estructurada con las columnas que importan. La IA puede ayudar a llenar o clasificar, pero la estructura la decisión humana.</li>
-86|  <li><strong>Automatización ligera:</strong> conectar el formulario con la hoja, o con un canal de seguimiento. Sin sobre-complicar.</li>
-87|</ul>
-88|
-89|<p>Lo que no hago: instalar un CRM complejo que nadie usa, o depender de un software que promete segmentación automática sin antes tener criterio claro. Eso suele terminar en una herramienta que genera ruido.</p>
-90|
-91|<h2>4. Cómo empiezo con una empresa (orden real)</h2>
-92|
-93|<p>Cuando una empresa o microempresa me pide ayuda con leads, el orden es:</p>
-94|
-95|<ol>
-96|  <li><strong>Entender de dónde vienen los leads y qué datos hay.</strong> No asumo que haya datos bien registrados. Pregunto: ¿qué tienen registrado? ¿en qué formato? ¿qué se está perdiendo?</li>
-97|  <li><strong>Definir las señales de intención que importan para ese negocio.</strong> No copio un esquema genérico. Empezó con lo que es relevante para su contexto.</li>
-98|  <li><strong>Estandarizar el registro mínimo.</strong> Si no se está registrando de dónde vino el lead, qué preguntó, cuándo — eso es lo primero, no IA, no CRM.</li>
-99|  <li><strong>Clasificar y priorizar con el criterio definido.</strong> Usar IA para acelerar la clasificación, no para inventar el criterio.</li>
-100|  <li><strong>Medir: cuántos leads de cada banda convertieron.</strong> Si la clasificación funcionó, los leads de alta prioridad deberían mostrar más conversiones. Si no, ajustar el criterio.</li>
-101|</ol>
-102|
-103|<p>No empiezo proponiendo un sistema. Empiezo proponiendo un criterio que se pueda medir.</p>
-104|
-105|<h2>5. Lo que no funciona (y por qué)</h2>
-106|
-107|<p>Algunas prácticas que veo y que no funcionan — o funcionan mal:</p>
-108|
-109|<p><strong>Segmentación por etiquetas genéricas sin criterio.</strong> Poner "caliente" / "tibio" / "frio" a cada lead sin definir qué hace que uno sea caliente es inútil. Todavía es subjetivo sin regla.</p>
-110|
-111|<p><strong>Depender de un CRM que nadie usa.</strong> Si el CRM está vacío o los datos no se registran, la segmentación no existe. No importa cuánto cueste el software.</p>
-112|
-113|<p><strong>Automatizar el seguimiento sin segmentación.</strong> Si enviás el mismo mensaje a todos, o seguís a todos por igual — eso no es segmentación, es spam organizado.</p>
-114|
-115|<p><strong>Esperar que la IA lo resuelva todo.</strong> La IA clasifica y acelera. El criterio, las señales, y la disciplina de registro — eso es humano. Sin eso, la IA procesa basura y devuelve basura acelerada.</p>
-116|
-117|<h2>6. Un ejemplo concreto (hipotético)</h2>
-118|
-119|<p>Imagina una microempresa de servicios que recibe leads por:</p>
-120|<ul>
-121|  <li>Web (formulario de contacto)</li>
-122|  <li>WhatsApp (mensajes directos)</li>
-123|  <li>Referidos (alguien que les recomienda)</li>
-124|  <li>Cold outreach (ellos contactan a prospectos)</li>
-125|</ul>
-126|
-127|<p>Sin segmentación, todos entran en el mismo bucket. Con segmentación simple:</p>
-128|<ul>
-129|  <li><strong>Web — quien llenó el formulario de precios:</strong> alta prioridad. Mensaje directo con siguiente paso concreto.</li>
-130|  <li><strong>Web — quien solo vio el blog:</strong> media prioridad. Mantener contacto, invitar a algo de valor.</li>
-131|  <li><strong>WhatsApp — quien preguntó precio directamente:</strong> alta prioridad. Respuesta rápida, siguiente paso.</li>
-132|  <li><strong>Referido:</strong> prioridad variable — preguntá de quién vino y evaluá la señal.</li>
-133|  <li><strong>Cold outreach — respuesta positiva:</strong> clasificá por lo que dijo, no por el hecho de responder.</li>
-134|</ul>
-135|
-136|<p>Esto no requiere CRM enterprise. Requiere registro, criterio, y — en parte — IA para acelerar la clasificación.</p>
-137|
-138|<h2>7. Si empezás desde cero (sin datos registrados)</h2>
-139|
-140|<p>Si no tenés leads registrados, o están muy dispersos, el primer paso no es segmentar — es <strong>empezar a registrar lo que importa.</strong></p>
-141|
-142|<p>Mínimo indispensable para empezar:</p>
-143|<ul>
-144|  <li>Nombre / empresa del lead</li>
-145|  <li>De dónde vino (canal, página, persona que los referió)</li>
-146|  <li>Qué preguntó o qué mostró interés</li>
-147|  <li>Fecha de primer contacto</li>
-148|  <li>Qué se hizo después (seguimiento, reunión, cierre, sin respuesta)</li>
-149|</ul>
-150|
-151|<p>Sin eso, no hay nada que segmentar. No importa la herramienta.</p>
-152|
-153|<h2>8. Cierre</h2>
-154|
-155|<p>Segmentar leads no requiere un CRM caro. Requiere <strong>criterio sobre qué señales importan, datos registrados, y un proceso de priorización que se pueda medir.</strong> La IA ayuda a acelerar la parte repetitiva — clasificación, etiquetado, generación de mensajes por segmento — pero no reemplaza el criterio de qué es útil.</p>
-156|
-157|<p>Si querés empezar a segmentar sin invertir en software costoso, el orden es: definir criterio → registrar datos mínimos → clasificar con ayuda de IA → medir si funcionó. Eso es suficiente para empezar a mejorar, sin sobre-complicar.</p>
-158|
-159|<div class="article-callout">
-160|  <div class="label">Contacto</div>
-161|  <p><strong>aurum.nova.business@gmail.com</strong> — escribime por email o WhatsApp <strong>+593 99 419 5932</strong>. Te respondo en menos de 24 h hábiles.</p>
-162|</div>
-163|
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cómo usar IA para segmentar leads sin depender de un CRM caro — AURUM NOVA</title>
+<meta name="description" content="Tres formas prácticas de segmentar y priorizar leads usando herramientas de IA accesibles, sin comprar software costoso. Para empresas y microempresas.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#050509">
+<meta name="author" content="Angel Santiago Alvarado Rodriguez">
+
+<meta property="og:title" content="Cómo usar IA para segmentar leads sin depender de un CRM caro — AURUM NOVA">
+<meta property="og:description" content="Tres formas prácticas de segmentar y priorizar leads usando herramientas de IA accesibles, sin comprar software costoso.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1550745165-9bc0b2527263?w=1200&q=80">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-09-21">
+<meta property="article:author" content="https://github.com/aurum-ceo">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cómo usar IA para segmentar leads sin depender de un CRM caro — AURUM NOVA">
+<meta name="twitter:description" content="Tres formas prácticas de segmentar y priorizar leads usando herramientas de IA accesibles, sin comprar software costoso.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #050509; --bg-2: #080810; --bg-card: #0d0d1a; --bg-card-2: #111123;
+  --border: rgba(212,175,55,0.14); --border-strong: rgba(212,175,55,0.42);
+  --gold: #d4af37; --gold-2: #e8c85a; --gold-3: #b8962e; --gold-glow: rgba(212,175,55,0.55);
+  --cyan: #4fd6e0; --text: #efe9de; --text-muted: #a09c93; --text-dim: #5c5952;
+  --maxw: 780px; --radius: 16px;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --mono: 'JetBrains Mono', 'Courier New', Consolas, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+body::before { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0; background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(212,175,55,0.04) 0%, transparent 70%); }
+::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: var(--bg-2); } ::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.25); border-radius: 4px; }
+::selection { background: var(--gold); color: #050509; }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; position: relative; z-index: 2; }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 12px 0; background: rgba(5,5,9,0.8); backdrop-filter: blur(18px) saturate(170%); border-bottom: 1px solid rgba(212,175,55,0.09); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1180px; margin: 0 auto; padding: 0 28px; gap: 16px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.05rem; letter-spacing: -0.02em; color: var(--text); text-decoration: none; }
+.brand .mark { width: 30px; height: 30px; border-radius: 6px; background: linear-gradient(135deg, var(--gold-2), var(--gold-3)); display: grid; place-items: center; color: #050509; font-weight: 900; font-size: 0.95rem; box-shadow: 0 3px 10px -2px var(--gold-glow); font-family: var(--serif); }
+.brand .name { color: var(--gold); }
+.brand-sub { color: var(--text-muted); font-weight: 500; font-size: 0.78rem; margin-left: 2px; }
+.nav-links { display: flex; gap: 24px; }
+@media(max-width:640px){.nav-links{display:none;}}
+.nav-links a { color: var(--text-muted); font-size: 0.82rem; transition: color .2s; }
+.nav-links a:hover { color: var(--gold); }
+.menu-toggle { display: none; background: none; border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 1.3rem; cursor: pointer; padding: 6px 10px; }
+@media(max-width:640px){.menu-toggle{display:block;}}
+
+.article-header { padding: 120px 0 32px; }
+.article-header .meta { font-family: var(--mono); font-size: 0.68rem; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; display: flex; gap: 16px; flex-wrap: wrap; }
+.article-header .meta .sep { color: var(--text-faint); }
+.article-header .meta a { color: var(--gold); }
+.article-header h1 { font-size: clamp(1.8rem,4vw,3rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 20px; max-width: 780px; }
+.article-header .lead { font-size: 1.1rem; color: var(--text-muted); line-height: 1.7; max-width: 640px; margin-bottom: 24px; }
+.article-header .author { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+.article-header .author .mark { width: 36px; height: 36px; border-radius: 6px; background: linear-gradient(135deg, var(--gold-2), var(--gold-3)); display: grid; place-items: center; color: #050509; font-weight: 900; font-size: 1.1rem; box-shadow: 0 4px 12px -2px var(--gold-glow); font-family: var(--serif); }
+.article-header .author .info { font-size: 0.88rem; }
+.article-header .author .name { color: var(--text); font-weight: 600; }
+.article-header .author .role { color: var(--text-muted); font-size: 0.78rem; }
+
+.article-body { padding: 0 0 60px; }
+.article-body > p { margin-bottom: 18px; font-size: 0.96rem; line-height: 1.75; color: var(--text-muted); max-width: 66ch; }
+.article-body > h2 { font-size: 1.5rem; font-weight: 700; margin: 40px 0 16px; color: var(--text); letter-spacing: -0.01em; }
+.article-body > h3 { font-size: 1.15rem; font-weight: 600; margin: 28px 0 10px; color: var(--text); }
+.article-body > strong { color: var(--text); }
+.article-body > em { color: var(--text); font-style: italic; }
+.article-body > ul, .article-body > ol { margin: 12px 0 18px 24px; color: var(--text-muted); }
+.article-body > li { margin-bottom: 8px; line-height: 1.65; }
+
+.article-callout { margin: 36px 0; padding: 24px; border-radius: var(--radius); background: linear-gradient(180deg, var(--bg-card), var(--bg-card-2)); border: 1px solid var(--border); border-left: 3px solid var(--gold); }
+.article-callout p { margin-bottom: 0; }
+.article-callout .label { font-family: var(--mono); font-size: 0.64rem; color: var(--gold); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px; }
+
+.article-back { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.article-back a { color: var(--text-muted); font-size: 0.84rem; }
+.article-back a:hover { color: var(--gold); }
+
+footer { padding: 32px 0 24px; border-top: 1px solid var(--border); position: relative; z-index: 2; background: rgba(8,8,15,0.3); }
+.footer-inner { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+@media(min-width:640px){.footer-inner{flex-direction:row;justify-content:space-between;}}
+.footer-copy { font-size: 0.72rem; color: var(--text-dim); font-family: var(--mono); }
+.footer-links { display: flex; gap: 18px; }
+.footer-links a { color: var(--text-dim); font-size: 0.78rem; transition: color .2s; }
+.footer-links a:hover { color: var(--gold); }
+
+@media(max-width:620px){.wrap{padding:0 18px;}nav{padding:10px 0;}.nav-inner{padding:0 18px;}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+/* WHATSAPP FLOATING BUTTON */
+.wa-float { position: fixed; bottom: 24px; right: 24px; z-index: 200; display: flex; align-items: center; justify-content: center; width: 54px; height: 54px; border-radius: 50%; background: #25D366; color: #fff; text-decoration: none; box-shadow: 0 4px 18px rgba(37,211,102,0.4); transition: transform .2s, box-shadow .2s; }
+.wa-float:hover { transform: scale(1.08); box-shadow: 0 6px 24px rgba(37,211,102,0.55); }
+.wa-pulse { position: absolute; inset: 0; border-radius: 50%; background: rgba(255,255,255,0.25); animation: wa-pulse 2s infinite; }
+@keyframes wa-pulse { 0% { transform: scale(1); opacity: 0.7; } 50% { transform: scale(1.4); opacity: 0; } 100% { transform: scale(1); opacity: 0; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="https://aurum-ceo.github.io/aurum-nova/" class="brand">
+      <span class="mark">A</span>
+      <span class="name">AURUM</span> NOVA<span class="brand-sub">· CEO</span>
+    </a>
+    <div class="nav-links">
+      <a href="https://aurum-ceo.github.io/aurum-nova/#about">Sobre mí</a>
+      <a href="https://aurum-ceo.github.io/aurum-nova/#services">Servicios</a>
+      <a href="https://aurum-ceo.github.io/aurum-nova/#portfolio">Portafolio</a>
+      <a href="https://aurum-ceo.github.io/aurum-nova/#contact">Contacto</a>
+    </div>
+    <button class="menu-toggle" aria-label="Abrir menú" style="display:none">☰</button>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="article-header">
+    <div class="meta">
+      <span>Artículo</span><span class="sep">·</span><span>Septiembre 2026</span><span class="sep">·</span><span>7 min de lectura</span>
+    </div>
+    <h1 id="articleTitle">Cómo usar inteligencia artificial para segmentar leads sin depender de un CRM caro</h1>
+    <p class="lead" id="articleLead"></p>
+    <div class="author">
+      <div class="mark">A</div>
+      <div class="info">
+        <div class="name">Angel Santiago Alvarado Rodriguez</div>
+        <div class="role">CEO · Fundador · AURUM NOVA</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-body" id="articleBody">
+
+<p>La mayoría de las empresas que empiezan a crecer tienen el mismo problema: <strong>tienen leads, pero no los están priorizando.</strong> Todos reciben lo mismo, todos entran en el mismo bucket, y el tiempo se desperdicia persiguiendo oportunidades de bajo valor mientras las buenas pasan desapercibidas.</p>
+
+<p>La solución "oficial" que venden es siempre la misma: <strong>comprá un CRM caro, integrá todo, y ahí tenés segmentación.</strong> A veces tiene sentido. A veces es como comprar un avión para ir al supermercado.</p>
+
+<p>Ésto es lo que hago cuando una empresa o microempresa me pide ayuda con leads: no empiezo proponiendo software. Empiezo con <strong>criterio + herramientas accesibles + un proceso que se pueda medir.</strong></p>
+
+<h2>1. Por qué la segmentación falla antes de cualquier herramienta</h2>
+
+<p>Antes de tocar cualquier herramienta, hay tres razones por las que la segmentación no funciona — y ninguna de ellas es "no tenés el CRM correcto":</p>
+
+<p><strong>Primera: no hay criterio de qué importa.</strong> Si no sabés qué señal indica que un lead es prometedor, cualquier herramienta te va a dar segmentación sin sentido. El software clasifica, pero vos decisión qué clase es útil.</p>
+
+<p><strong>Segunda: los datos están dispersos y no se registran.</strong> Tiene leads entrando por web, WhatsApp, referidos, cold outreach — y cada uno vive en su propio canal sin cruzarse. No hay una vista única, solo canales separados que nadie logra unificar.</p>
+
+<p><strong>Tercera: priorizan por orden de llegada, no por señal de intención.</strong> "El primero que escribió, el primero que atiendo". Eso parece justo, pero no es estratégico. A veces el lead que llegó después tiene mucho más potencial que el que llegó primero.</p>
+
+<p>Cuando estas tres cosas están presentes, comprar un CRM no resuelve el problema — solo lo traslada a otro software.</p>
+
+<h2>2. Tres formas de segmentar con IA accesible (sin CRM enterprise)</h2>
+
+<p>Estas tres formas no requieren inversión grande. Requieren <strong>datos, criterio, y un poco de disciplina.</strong> La IA acelera las partes repetitivas; el humano decide qué señales importan.</p>
+
+<h3>2.1 Clasificación por señales de intención (lo más importante)</h3>
+
+<p>No todo lead es igual. La forma más útil de segmentar es por <strong>señales de intención</strong> — evidencia de que este lead en particular está más cerca de decidir.</p>
+
+<p>Señales típicas que importan:</p>
+<ul>
+  <li><strong>De dónde vino.</strong> Un lead que llegó desde una página de precios o de casos de estudio tiene más intención que uno que vino desde el blog genérico.</li>
+  <li><strong>Qué preguntó.</strong> "¿Cuánto cuesta?" o "¿Tienen implementación rápida?" es más prometedor que "¿Qué son ustedes?".</li>
+  <li><strong>Qué hizo antes de contactar.</strong> Si vio el caso de estudio, descargó la guía, revisó el pricing — hay señal.</li>
+  <li><strong>Si ya tuvo interacción previa.</strong> Un lead que ya habló con ustedes antes tiene más contexto y más probabilidad de cerrar que uno totalmente nuevo.</li>
+</ul>
+
+<p>La IA ayuda aquí a <strong>clasificar y etiquetar</strong> estos leads de forma rápida: toma la información disponible (fuente, mensaje, comportamiento) y asigna una señal de intención. No reemplaza el criterio de qué señales son importantes — eso lo decisión vos.</p>
+
+<p>Una forma práctica de empezar sin CRM:</p>
+<ul>
+  <li>Agarra los leads de los últimos 30–60 días (los que tengas registrados, en qué formato estén).</li>
+  <li>Define 3–5 señales de intención que para tu negocio indican "esto se promete".</li>
+  <li>Usá IA para ayudarte a clasificar cada lead según esas señales — no para inventarlas.</li>
+  <li>Medí: cuántos de los leads "alta señal" convertieron vs. los demás. Eso te dice si el criterio funcionó.</li>
+</ul>
+
+<h3>2.2 Priorización por potencial, no por orden de llegada</h3>
+
+<p>Una vez que tenés señales de intención, la siguiente pregunta es: <strong>¿a quién atendés primero?</strong></p>
+
+<p>La respuesta obvia parece ser "al que llega primero". La respuesta útil es "al que más probabilidad de cierre tiene, o al que más valor puede aportar".</p>
+
+<p>Una forma simple de priorizar sin software complejo:</p>
+<ul>
+  <li>Clasificá cada lead en una de tres bandas: <strong>alta prioridad</strong> (señales claras de intención + contexto favorable), <strong>media</strong> (algo de señal pero falta contexto), <strong>baja</strong> (poca o nada de señal).</li>
+  <li>Atendé primero la alta. Sin importar el orden de llegada.</li>
+  <li>Para la media, decidí si vale la pena invertir tiempo en obtener más contexto antes de descartar.</li>
+  <li>Para la baja, no la descartés totalmente — guardá el contacto, pero no gastes tiempo de seguimiento activo.</li>
+</ul>
+
+<p>La IA acelera la clasificación en bandas. El criterio de qué hace que un lead sea "alta" viene del humano y del negocio.</p>
+
+<h3>2.3 Segmentación contextual: qué mensaje para qué tipo de lead</h3>
+
+<p>No todos los leads reciben el mismo mensaje. Un lead que llegó desde una página de precios necesita un mensaje diferente a uno que vino desde el blog. Un lead que ya tuvo una conversación previa necesita un seguimiento diferente a uno nuevo.</p>
+
+<p>Esto es lo que la mayoría no hace: <strong>segmentá el mensaje, no solo el lead.</strong></p>
+
+<p>Un ejemplo simple:</p>
+<ul>
+  <li><strong>Lead caliente (alta señal de intención):</strong> mensaje directo, con siguiente paso concreto (reunión, llamada, propuesta). No rodeos.</li>
+  <li><strong>Lead tibio (alguna señal pero poco contexto):</strong> mensaje que añade valor, invita a dar un paso pequeño (mirar una guía, una demo corta). No pedir cierre inmediato.</li>
+  <li><strong>Lead frío (poca señal):</strong> mantener el contacto, enviar contenido relevante ocasionalmente. No insistir.</li>
+</ul>
+
+<p>La IA ayuda a <strong>generar variaciones de mensaje para cada segmento</strong> — no a definir los segmentos. Eso lo decisión vos.</p>
+
+<h2>3. Herramientas que uso (y cómo las uso para segmentación)</h2>
+
+<p>No recomiendo software por la moda. Uso lo que resuelve el problema concreto. Para segmentación de leads, las herramientas que me sirven:</p>
+
+<ul>
+  <li><strong>IA para análisis de texto:</strong> leer mensajes de leads, extraer señales, clasificar. No para decidir — para procesar rápido.</li>
+  <li><strong>Formularios simples + registro estructurado:</strong> un formulario que capture lo que importa (de dónde vino, qué interesó, si tuvo interacción previa). Sin formularios raros que nadie completa.</li>
+  <li><strong>Hojas de cálculo con criterio claro:</strong> a veces la mejor herramienta es una hoja bien estructurada con las columnas que importan. La IA puede ayudar a llenar o clasificar, pero la estructura lo decisión humana.</li>
+  <li><strong>Automatización ligera:</strong> conectar el formulario con la hoja, o con un canal de seguimiento. Sin sobre-complicar.</li>
+</ul>
+
+<p>Lo que no hago: instalar un CRM complejo que nadie usa, o depender de un software que promete segmentación automática sin antes tener criterio claro. Eso suele terminar en una herramienta que genera ruido.</p>
+
+<h2>4. Cómo empiezo con una empresa (orden real)</h2>
+
+<p>Cuando una empresa o microempresa me pide ayuda con leads, el orden es:</p>
+
+<ol>
+  <li><strong>Entender de dónde vienen los leads y qué datos hay.</strong> No asumo que haya datos bien registrados. Pregunto: ¿qué tienen registrado? ¿en qué formato? ¿qué se está perdiendo?</li>
+  <li><strong>Definir las señales de intención que importan para ese negocio.</strong> No copio un esquema genérico. Empezó con lo que es relevante para su contexto.</li>
+  <li><strong>Estandarizar el registro mínimo.</strong> Si no se está registrando de dónde vino el lead, qué preguntó, cuándo — eso es lo primero, no IA, no CRM.</li>
+  <li><strong>Clasificar y priorizar con el criterio definido.</strong> Usar IA para acelerar la clasificación, no para inventar el criterio.</li>
+  <li><strong>Medir: cuántos leads de cada banda convertieron.</strong> Si la clasificación funcionó, los leads de alta prioridad deberían mostrar más conversiones. Si no, ajustar el criterio.</li>
+</ol>
+
+<p>No empiezo proponiendo un sistema. Empiezo proponiendo un criterio que se pueda medir.</p>
+
+<h2>5. Lo que no funciona (y por qué)</h2>
+
+<p>Algunas prácticas que veo y que no funcionan — o funcionan mal:</p>
+
+<p><strong>Segmentación por etiquetas genéricas sin criterio.</strong> Poner "caliente" / "tibio" / "frío" a cada lead sin definir qué hace que uno sea caliente es inútil. Todavía es subjetivo sin regla.</p>
+
+<p><strong>Depender de un CRM que nadie usa.</strong> Si el CRM está vacío o los datos no se registran, la segmentación no existe. No importa cuánto cueste el software.</p>
+
+<p><strong>Automatizar el seguimiento sin segmentación.</strong> Si enviás el mismo mensaje a todos, o seguís a todos por igual — eso no es segmentación, es spam organizado.</p>
+
+<p><strong>Esperar que la IA lo resuelva todo.</strong> La IA clasifica y acelera. El criterio, las señales, y la disciplina de registro — eso es humano. Sin eso, la IA procesa basura y devuelve basura acelerada.</p>
+
+<h2>6. Un ejemplo concreto (hipotético)</h2>
+
+<p>Imagina una microempresa de servicios que recibe leads por:</p>
+<ul>
+  <li>Web (formulario de contacto)</li>
+  <li>WhatsApp (mensajes directos)</li>
+  <li>Referidos (alguien que les recomienda)</li>
+  <li>Cold outreach (ellos contactan a prospectos)</li>
+</ul>
+
+<p>Sin segmentación, todos entran en el mismo bucket. Con segmentación simple:</p>
+<ul>
+  <li><strong>Web — quien llenó el formulario de precios:</strong> alta prioridad. Mensaje directo con siguiente paso concreto.</li>
+  <li><strong>Web — quien solo vio el blog:</strong> media prioridad. Mantener contacto, invitar a algo de valor.</li>
+  <li><strong>WhatsApp — quien preguntó precio directamente:</strong> alta prioridad. Respuesta rápida, siguiente paso.</li>
+  <li><strong>Referido:</strong> prioridad variable — preguntá de quién vino y evaluá la señal.</li>
+  <li><strong>Cold outreach — respuesta positiva:</strong> clasificá por lo que dijo, no por el hecho de responder.</li>
+</ul>
+
+<p>Esto no requiere CRM enterprise. Requiere registro, criterio, y — en parte — IA para acelerar la clasificación.</p>
+
+<h2>7. Si empezás desde cero (sin datos registrados)</h2>
+
+<p>Si no tenés leads registrados, o están muy dispersos, el primer paso no es segmentar — es <strong>empezar a registrar lo que importa.</strong></p>
+
+<p>Mínimo indispensable para empezar:</p>
+<ul>
+  <li>Nombre / empresa del lead</li>
+  <li>De dónde vino (canal, página, persona que los refirió)</li>
+  <li>Qué preguntó o qué mostró interés</li>
+  <li>Fecha de primer contacto</li>
+  <li>Qué se hizo después (seguimiento, reunión, cierre, sin respuesta)</li>
+</ul>
+
+<p>Sin eso, no hay nada que segmentar. No importa la herramienta.</p>
+
+<h2>8. Cierre</h2>
+
+<p>Segmentar leads no requiere un CRM caro. Requiere <strong>criterio sobre qué señales importan, datos registrados, y un proceso de priorización que se pueda medir.</strong> La IA ayuda a acelerar la parte repetitiva — clasificación, etiquetado, generación de mensajes por segmento — pero no reemplaza el criterio de qué es útil.</p>
+
+<p>Si querés empezar a segmentar sin invertir en software costoso, el orden es: definir criterio → registrar datos mínimos → clasificar con ayuda de IA → medir si funcionó. Eso es suficiente para empezar a mejorar, sin sobre-complicar.</p>
+
+<div class="article-callout">
+  <div class="label">Contacto</div>
+  <p><strong>aurum.nova.business@gmail.com</strong> — escribime por email o WhatsApp <strong>+593 99 419 5932</strong>. Te respondo en menos de 24 h hábiles.</p>
 </div>
-128|
-129|  <div class="article-back">
-130|    <a href="https://aurum-ceo.github.io/aurum-nova/">← Volver al inicio</a>
-131|    <span class="sep">·</span>
-132|    <span>© 2026 AURUM NOVA · Angel Santiago Alvarado Rodriguez</span>
-133|  </div>
-134|</main>
-135|
-136|<footer>
-137|  <div class="wrap footer-inner">
-138|    <a href="https://aurum-ceo.github.io/aurum-nova/" class="brand" style="font-size:0.95rem">AURUM NOVA</a>
-139|    <div class="footer-links">
-140|      <a href="https://aurum-ceo.github.io/aurum-nova/#about">Sobre mí</a>
-141|      <a href="https://aurum-ceo.github.io/aurum-nova/#services">Servicios</a>
-142|      <a href="https://aurum-ceo.github.io/aurum-nova/#contact">Contacto</a>
-143|    </div>
-144|    <div class="footer-copy">© 2026 Angel Santiago Alvarado Rodriguez · CEO · AURUM NOVA</div>
-145|  </div>
-146|</footer>
-147|
-148|<!-- WHATSAPP FLOATING BUTTON -->
-149|<a href="https://wa.me/593994195932?text=Hola%20Angel%2C%20me%20interesa%20tu%20servicio" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp directo">
-150|  <span class="wa-pulse" aria-hidden="true"></span>
-151|  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:28px;height:28px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"></path></svg>
-152|</a>
-153|
-154|<script>
-155|"use strict";
-156|(function(){
-157|  document.getElementById('articleTitle').textContent = 'Cómo usar inteligencia artificial para segmentar leads sin depender de un CRM caro';
-158|  document.getElementById('articleLead').textContent = 'Tres formas prácticas de segmentar y priorizar leads usando herramientas de IA accesibles — para empresas y microempresas que no quieren (o no pueden) pagar un CRM enterprise todavía.';
-159|})();
-160|</script>
-161|
-162|</body>
-163|</html>
-164|
+
+  </div>
+
+  <div class="article-back">
+    <a href="https://aurum-ceo.github.io/aurum-nova/">← Volver al inicio</a>
+    <span class="sep">·</span>
+    <span>© 2026 AURUM NOVA · Angel Santiago Alvarado Rodriguez</span>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <a href="https://aurum-ceo.github.io/aurum-nova/" class="brand" style="font-size:0.95rem">AURUM NOVA</a>
+    <div class="footer-links">
+      <a href="https://aurum-ceo.github.io/aurum-nova/#about">Sobre mí</a>
+      <a href="https://aurum-ceo.github.io/aurum-nova/#services">Servicios</a>
+      <a href="https://aurum-ceo.github.io/aurum-nova/#contact">Contacto</a>
+    </div>
+    <div class="footer-copy">© 2026 Angel Santiago Alvarado Rodriguez · CEO · AURUM NOVA</div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/593994195932?text=Hola%20Angel%2C%20me%20interesa%20tu%20servicio" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp directo">
+  <span class="wa-pulse" aria-hidden="true"></span>
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:28px;height:28px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"></path></svg>
+</a>
+
+<script>
+"use strict";
+(function(){
+  document.getElementById('articleTitle').textContent = 'Cómo usar inteligencia artificial para segmentar leads sin depender de un CRM caro';
+  document.getElementById('articleLead').textContent = 'Tres formas prácticas de segmentar y priorizar leads usando herramientas de IA accesibles — para empresas y microempresas que no quieren (o no pueden) pagar un CRM enterprise todavía.';
+})();
+</script>
+
+</body>
+</html>
