@@ -8,7 +8,10 @@
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#050509">
 
-<!-- Open Graph / Twitter -->
+<!-- Security headers (content meta-equiv for static site compat) -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' assets/ https://images.unsplash.com data:; connect-src 'self' https://formspree.io https://wa.me; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formspree.io;">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), interest-cohort=()">
 <meta property="og:title" content="AURUM NOVA — Angel Santiago Alvarado Rodriguez, CEO">
 <meta property="og:description" content="IA aplicada a ventas y crecimiento empresarial. Socio colaborador para empresas y microempresas.">
 <meta property="og:image" content="assets/portrait.png">
@@ -874,7 +877,7 @@ footer {
         </p>
         <div class="hero-cta">
           <a href="#contact" class="btn btn-primary">Hablemos — Plaza una reunión</a>
-          <a href="#services" class="btn btn-ghost">Ver qué ofrezco →</a>
+          <a href="aurumpitch.html" class="btn btn-ghost" target="_blank" rel="noopener">Generar un email →</a>
         </div>
         <div class="hero-meta">
           <span class="badge-phone">
@@ -1175,7 +1178,12 @@ footer {
             <label for="f-msg">Mensaje <span class="req">*</span></label>
             <textarea id="f-msg" name="message" placeholder="Cuéntame tu situación, tu problema, qué necesitas…" required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary form-submit">Enviar — Plaza un día</button>
+          <!-- Honeypot anti-spam: campo visible para bots, oculto para humanos -->
+          <div class="form-group" style="position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;width:0;overflow:hidden" aria-hidden="true">
+            <label for="f-hp">Website</label>
+            <input id="f-hp" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <button type="submit" class="btn btn-primary form-submit">Enviar — Plaza una reunión</button>
           <div class="form-note">↓ tus datos no se comparten. Respuesta en &lt; 24 h hábiles.</div>
         </form>
       </div>
@@ -1425,7 +1433,7 @@ if (contactForm && FORMSPREE_URL) {
         note.style.color = 'var(--gold)';
         btn.textContent = 'Enviado — gracias';
         setTimeout(function() {
-          btn.textContent = 'Enviar — Plaza un día';
+          btn.textContent = 'Enviar — Plaza una reunión';
           note.style.color = '';
           note.textContent = '↓ tus datos no se comparten. Respuesta en < 24 h hábiles.';
           contactForm.reset();
@@ -1434,13 +1442,13 @@ if (contactForm && FORMSPREE_URL) {
         console.error('Formspree error:', data);
         alert('No pude enviar el mensaje. Intentá nuevamente o escribime por WhatsApp.');
         btn.disabled = false;
-        btn.textContent = 'Enviar — Plaza un día';
+        btn.textContent = 'Enviar — Plaza una reunión';
       }
     } catch (err) {
       console.error('Form submit error:', err);
       alert('Error de conexión. Volvé a intentarlo o contactame por WhatsApp.');
       btn.disabled = false;
-      btn.textContent = 'Enviar — Plaza un día';
+      btn.textContent = 'Enviar — Plaza una reunión';
     }
   });
 }

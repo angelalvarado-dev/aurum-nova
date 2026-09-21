@@ -1512,7 +1512,7 @@ function escapeAttr(str) {
 function showResult(email, subject, variants, tips, objective) {
   getEl('pitchResult').style.display = 'block';
   getEl('resultEmail').textContent = email;
-  getEl('resultProspectName').textContent = email.match(/^[^\n]+/)[0] || '—';
+  getEl('resultProspectName').textContent = (variants && variants.prospect) ? variants.prospect : (email.match(/^[^\n]+/)[0] || '—');
 
   // Subject
   var subjectEl = getEl('resultSubject');
