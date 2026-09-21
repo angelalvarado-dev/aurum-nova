@@ -30,7 +30,7 @@ Cuando una empresa (o microempresa) me contacta, usualmente hay una de estas tre
 
 **Segunda:** tienen IA "puesta" pero no resuelve nada. Instalaron alguna herramienta, o probaron unas prompts, o leyeron un tutorial — pero no hay un proceso claro detrás. La herramienta existe, el problema no se resolvió.
 
-**Tercera:** tienen procesos manuales que consumen tiempo sin valor. Clasificar leads a mano, redactar respuestas repetidas, seguir up sin estrategia, reportes que nadie lee — y el tiempo se va para_where_?
+- Tienen procesos manuales que consumen tiempo sin valor. Clasificar leads a mano, redactar respuestas repetidas, seguir up sin estrategia, reportes que nadie lee — y el tiempo se va para dónde.
 
 En los tres casos, el tema no es la IA. El tema es **falta de criterio** sobre qué parte del proceso vale la pena mejorar, y cómo.
 
@@ -42,10 +42,10 @@ Antes de sugerir herramienta alguna, hago cuatro preguntas. Si no se pueden resp
 
 ### 2.1 ¿Qué decisión se está tomando hoy, y vale la pena automatizarla?
 
-No todo vale la pena. La mayoría de las cosas que people quieren automatizar son cosas que, si se pensaran bien, no deberían existir. O deberían existir de otra forma.
+No todo vale la pena. La mayoría de las cosas que las personas quieren automatizar son cosas que, si se pensaran bien, no deberían existir. O deberían existir de otra forma.
 
 Vale la pena automatizar:
-- Clasificación de leads por probabilidad de cierre (si hay datos para entrenar o heuristics claras)
+- Clasificación de leads por probabilidad de cierre (si hay datos para entrenar o heurísticas claras)
 - Respuestas a consultas frecuentes (no genéricas — basadas en contexto real)
 - Follow-up sistemático (no spam, sino seguimiento con criterio)
 - Reportes que se consumen (si se leen y se toman decisiones)
@@ -76,7 +76,7 @@ Y "datos" no significa solo CRM. Puede ser:
 No "mejorar las ventas" — demasiado vago. Resultado concreto:
 - Menos tiempo de seguimiento manual por lead
 - Mayor tasa de respuesta a emails de cold outreach
-- Menor tiempo en clasificar/orgarnizar leads
+- Menor tiempo en clasificar/organizar leads
 - Más reuniones agendadas con prospectos calificados
 - Menos errores en procesos manuales
 
@@ -106,7 +106,7 @@ Lo que funciona:
 - Follow-up que añade valor (no solo "¿cómo estás?")
 - Tono que coincida con la etapa del proceso (no pedir cierre en el primer mensaje)
 
-La IA ayuda a **generar variaciones, esbozar estructuras, y acelerar la escritura** — pero el criterio de quédecirle a quién en qué momento viene del humano.
+- La IA ayuda a **generar variaciones, esbozar estructuras, y acelerar la escritura** — pero el criterio de qué decirle a quién en qué momento viene del humano.
 
 ### 3.3 Reportes que se consumen
 
@@ -157,7 +157,7 @@ Lo que no hago: sobre-complicar. Si un problema se resuelve con un proceso más 
 
 ---
 
-## 6. Cómo empiezo cuando entro a un empresa
+## 6. Cómo empiezo cuando entro a una empresa
 
 Cuando arranco con una empresa o microempresa, el orden es:
 
@@ -167,13 +167,13 @@ Cuando arranco con una empresa o microempresa, el orden es:
 4. **Implementar y medir** — no "implementar y esperar". Ver si mejoró el resultado medible.
 5. **Escalar si funciona** — si la intervención dio resultado, extenderla a otras áreas similares.
 
-No entro proponiendo un sistema complejo. Entero proponiendo una cosa que mejore algo medible.
+No entro proponiendo un sistema complejo. Entro proponiendo una cosa que mejore algo medible.
 
 ---
 
 ## 7. Un ejemplo conceptual (no un caso real — aún)
 
-Imagina una microempresa de servicios (pizzeria, consultoría pequeña, taller, etc.) que tiene:
+Imagina una microempresa de servicios (pizzería, consultoría pequeña, taller, etc.) que tiene:
 - Pedidos/leads entrando por varios canales (web, WhatsApp, referidos, walk-in)
 - Sin segmentación clara de quién es más valioso
 - Seguimiento manual y desorganizado
@@ -192,7 +192,7 @@ Esto no requiere sistema complejo. Requiere criterio, disciplina, y — en algun
 
 ## 8. Lo que no prometo
 
-No les prometo que la IA resuelva todo. No les prometo resultados mágicos. No les prometo automatizar toda la operación y vivir del puro paseivo.
+No les prometo que la IA resuelva todo. No les prometo resultados mágicos. No les prometo automatizar toda la operación y vivir del puro pasivo.
 
 Les prometo: **una intervención con criterio, enfocada en algo medible, que mejorará algo real.** Y si no hay nada claro para empezar, te lo digo — y empezamos por donde hay claridad.
 
@@ -218,7 +218,7 @@ Si estás pensando en usar inteligencia artificial en tus ventas o procesos, y q
 
 Si querés leer más sobre esto, o tenés un caso específico que querés analizar — escribime.
 
-**[Contacto →](/contact)** — escribime por email o WhatsApp. Te respondo en menos de 24 h hábiles.
+[Contacto →](#contact) — escribime por email o WhatsApp. Te respondo en menos de 24 h hábiles.
 
 ---
 

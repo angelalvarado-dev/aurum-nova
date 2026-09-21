@@ -103,6 +103,98 @@ body::after {
 ::selection { background: var(--gold); color: #050509; }
 
 /* =============================================
+   PREMIUM GLITCH EFFECT — para texto cyan
+   ============================================= */
+
+@keyframes glitch-cyan-1 {
+  0%, 100% { transform: translate(0); filter: none; }
+  20% { transform: translate(-2px, 1px); filter: hue-rotate(90deg) saturate(3); }
+  40% { transform: translate(2px, -1px); filter: hue-rotate(-90deg) saturate(2); }
+  60% { transform: translate(-1px, 2px); filter: hue-rotate(45deg); }
+  80% { transform: translate(1px, -2px); filter: hue-rotate(-45deg); }
+}
+
+@keyframes glitch-cyan-2 {
+  0%, 100% { transform: translate(0); opacity: 1; }
+  30% { transform: translate(3px, -1px); opacity: 0.85; }
+  60% { transform: translate(-3px, 1px); opacity: 0.9; }
+}
+
+@keyframes glitch-scanline {
+  0%, 100% { background-position: 0 0; }
+  10% { background-position: 100% 0; }
+  20% { background-position: 0 0; }
+  30% { background-position: 100% 0; }
+  40% { background-position: 0 0; }
+  50% { background-position: 100% 0; }
+  60% { background-position: 0 0; }
+  70% { background-position: 100% 0; }
+  80% { background-position: 0 0; }
+  90% { background-position: 100% 0; }
+}
+
+.cyan {
+  color: var(--cyan);
+  font-family: var(--serif);
+  font-style: italic;
+  position: relative;
+  display: inline-block;
+}
+
+/* Glitch solo en elementos con clase .glitch */
+.cyan.glitch::before,
+.cyan.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.cyan.glitch::before {
+  color: var(--cyan);
+  animation: glitch-cyan-1 3s infinite linear alternate-reverse;
+  z-index: -1;
+  clip-path: inset(0 0 60% 0);
+}
+
+.cyan.glitch::after {
+  color: var(--gold);
+  animation: glitch-cyan-2 2.8s infinite linear alternate-reverse;
+  z-index: -1;
+  clip-path: inset(60% 0 0 0);
+}
+
+.cyan.glitch {
+  animation: glitch-scanline 4s infinite linear;
+  background: linear-gradient(90deg,
+    var(--cyan) 0%,
+    var(--bg) 2%,
+    var(--cyan) 4%,
+    var(--bg) 6%,
+    var(--cyan) 8%,
+    var(--bg) 10%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 0 var(--gold), -2px 0 var(--cyan);
+}
+
+/* Sin glitch (solo color premium) */
+.cyan:not(.glitch) {
+  text-shadow: 0 0 20px rgba(79, 214, 224, 0.3);
+  transition: text-shadow 0.3s;
+}
+
+.cyan:not(.glitch):hover {
+  text-shadow: 0 0 30px rgba(79, 214, 224, 0.5);
+}
+
+/* =============================================
    LAYOUT
    ============================================= */
 
@@ -119,7 +211,37 @@ h1, h2, h3, h4 { font-family: var(--sans); font-weight: 700; letter-spacing: -0.
 h1 { font-size: clamp(2.4rem, 5.8vw, 4.4rem); font-weight: 800; }
 h2 { font-size: clamp(1.9rem, 3.4vw, 2.8rem); text-align: center; font-weight: 700; }
 h2 .serif { color: var(--gold); font-family: var(--serif); font-style: italic; font-weight: 600; }
-h2 .cyan { color: var(--cyan); font-family: var(--serif); font-style: italic; }
+h2 .cyan {
+  color: var(--cyan);
+  font-family: var(--serif);
+  font-style: italic;
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 0 20px rgba(79, 214, 224, 0.3);
+  transition: text-shadow 0.3s;
+}
+h2 .cyan:hover {
+  text-shadow: 0 0 30px rgba(79, 214, 224, 0.5);
+}
+
+/* Hero h1 cyan — glitch más intenso para protagonismo */
+.hero h1 .cyan {
+  color: var(--cyan);
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.02em;
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 0 30px rgba(79, 214, 224, 0.4);
+  transition: text-shadow 0.3s;
+}
+.hero h1 .cyan:hover {
+  text-shadow: 0 0 40px rgba(79, 214, 224, 0.6);
+}
+
+/* =============================================
+   LAYOUT
+   ============================================= */
 p { color: var(--text-muted); max-width: 64ch; }
 strong { color: var(--text); }
 a { color: var(--gold); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s; }
@@ -817,26 +939,26 @@ footer {
     <a href="#top" class="brand" aria-label="AURUM NOVA">
       <span class="mark">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="12" r="10" fill="url(#aGrad)" stroke="#d4af37" stroke-width="0.5"></circle>
-          <path d="M7 5L3 21H9L8.33 13.67L12.67 19L17 12.67L15.55 11.22L21 21H15L19 5H11L7 15.33L11.67 13.67L7 5Z" fill="#050509" stroke="#d4af37" stroke-width="0.8"></path>
           <defs>
             <linearGradient id="aGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#e8c85a"></stop>
-              <stop offset="100%" stop-color="#b8962e"></stop>
+              <stop offset="0%" stop-color="#e8c85a"/>
+              <stop offset="100%" stop-color="#b8962e"/>
             </linearGradient>
           </defs>
+          <circle cx="12" cy="12" r="10" fill="url(#aGrad)" stroke="#d4af37" stroke-width="0.5"/>
+          <path d="M7 5L3 21H9L8.33 13.67L12.67 19L17 12.67L15.55 11.22L21 21H15L19 5H11L7 15.33L11.67 13.67L7 5Z" fill="#050509" stroke="#d4af37" stroke-width="0.8"/>
         </svg>
       </span>
       <span class="name">AURUM</span> NOVA
       <span class="name-sub">· CEO</span>
     </a>
     <div class="nav-links">
-      <a href="#about">Sobre mí</a>
-      <a href="#services">Servicios</a>
-      <a href="#portfolio">Portafolio</a>
-      <a href="#progress">Avances</a>
-      <a href="#blog">Blog</a>
-      <a href="#contact">Contacto</a>
+      <a href="#about" data-target="about">Sobre mí</a>
+      <a href="#services" data-target="services">Servicios</a>
+      <a href="#portfolio" data-target="portfolio">Portafolio</a>
+      <a href="#progress" data-target="progress">Avances</a>
+      <a href="#blog" data-target="blog">Blog</a>
+      <a href="#contact" data-target="contact">Contacto</a>
       <a href="#contact" class="btn btn-primary nav-cta" style="padding:10px 22px;font-size:0.82rem">Plaza una reunión <span style="opacity:0.7;font-size:0.75rem">↓</span></a>
     </div>
     <button class="menu-toggle" aria-label="Abrir menú" id="menuToggle">
@@ -848,12 +970,12 @@ footer {
     </button>
   </div>
   <div id="mobileMenu">
-    <a href="#about">Sobre mí</a>
-    <a href="#services">Servicios</a>
-    <a href="#portfolio">Portafolio</a>
-    <a href="#progress">Avances</a>
-    <a href="#blog">Blog</a>
-    <a href="#contact">Contactar</a>
+    <a href="#about" data-target="about">Sobre mí</a>
+    <a href="#services" data-target="services">Servicios</a>
+    <a href="#portfolio" data-target="portfolio">Portafolio</a>
+    <a href="#progress" data-target="progress">Avances</a>
+    <a href="#blog" data-target="blog">Blog</a>
+    <a href="#contact" data-target="contact">Contactar</a>
   </div>
 </nav>
 
@@ -869,7 +991,7 @@ footer {
           CEO · Fundador · IA
         </span>
         <h1>
-          Inteligencia<span class="cyan">Artificial</span> al servicio de tu crecimiento.<br>
+          Inteligencia<span class="cyan glitch" data-text="Artificial">Artificial</span> al servicio de tu crecimiento.<br>
           <span class="gold">Angel Santiago Alvarado</span>
         </h1>
         <p class="lead">
@@ -924,13 +1046,13 @@ footer {
     <div class="section-header">
       <div class="gold-line"></div>
       <div class="eyebrow">Sobre mí</div>
-      <h2>CEO, fundador <span class="serif">— el socio que falta</span></h2>
+      <h2>CEO, fundador <span class="cyan glitch" data-text="— el socio que falta">— el socio que falta</span></h2>
     </div>
     <div class="about-block container">
       <div class="about-text reveal">
         <p>Hola, soy <strong>Angel Santiago Alvarado Rodriguez</strong>, CEO y fundador de <strong class="gold">AURUM NOVA</strong>.</p>
         <p>Actualmente trabajo como socio colaborador: entras con un problema — ventas, procesos, datos, automatización, crecimiento — y yo aporto la pieza que te permite avanzar. No vendo "horas": entrego resultados concretos en lo que me pides.</p>
-        <p>Mi enfoque mezcla <strong class="cyan">inteligencia artificial</strong> con <strong>estrategia de ventas y negocio</strong>. Uso IA no por moda, sino para acelerar lo que ya debería funcionar: leads, pipelines, procesos, decisiones.</p>
+        <p>Mi enfoque mezcla <strong class="cyan glitch" data-text="inteligencia artificial">inteligencia artificial</strong> con <strong>estrategia de ventas y negocio</strong>. Uso IA no por moda, sino para acelerar lo que ya debería funcionar: leads, pipelines, procesos, decisiones.</p>
         <p>Creando la empresa desde cero, hoy trabajo solo — pero la estructura está pensada para <strong>escalar a equipo</strong> cuando el volumen lo pida. Tú pagas por resultados, no por títulos.</p>
 
         <div class="about-signature">
@@ -972,7 +1094,7 @@ footer {
     <div class="section-header">
       <div class="gold-line"></div>
       <div class="eyebrow">Qué ofrezco</div>
-      <h2>Servicios <span class="serif">— lo que resuelvo</span></h2>
+      <h2>Servicios <span class="cyan glitch" data-text="— lo que resuelvo">— lo que resuelvo</span></h2>
     </div>
     <div class="services-grid container">
       <article class="service-card reveal">
@@ -1039,7 +1161,7 @@ footer {
     <div class="section-header">
       <div class="gold-line"></div>
       <div class="eyebrow">Portafolio</div>
-      <h2>Proyectos <span class="serif">— resultados reales</span></h2>
+      <h2>Proyectos <span class="cyan glitch" data-text="— resultados reales">— resultados reales</span></h2>
     </div>
     <div class="portfolio-grid container" id="portfolioGrid"></div>
     <div style="text-align:center;margin-top:38px" class="reveal">
@@ -1056,7 +1178,7 @@ footer {
     <div class="section-header">
       <div class="gold-line"></div>
       <div class="eyebrow">Avances</div>
-      <h2>Progreso <span class="serif">— la empresa crece</span></h2>
+      <h2>Progreso <span class="cyan glitch" data-text="— la empresa crece">— la empresa crece</span></h2>
     </div>
     <div class="timeline-wrap container" id="timelineWrap">
       <div class="timeline-line" id="timelineLine"></div>
@@ -1072,7 +1194,7 @@ footer {
     <div class="section-header">
       <div class="gold-line"></div>
       <div class="eyebrow">Blog y publicaciones</div>
-      <h2>Avances y pensamiento <span class="serif">— lo que estoy escribiendo</span></h2>
+      <h2>Avances y pensamiento <span class="cyan glitch" data-text="— lo que estoy escribiendo">— lo que estoy escribiendo</span></h2>
     </div>
     <div class="blog-list container" id="blogList"></div>
     <div style="text-align:center;margin-top:38px" class="reveal">
@@ -1089,7 +1211,7 @@ footer {
     <div class="section-header">
       <div class="gold-line"></div>
       <div class="eyebrow">Contacto</div>
-      <h2>Quiero trabajar contigo. <span class="serif">— contacto directo</span></h2>
+      <h2>Quiero trabajar contigo. <span class="cyan glitch" data-text="— contacto directo">— contacto directo</span></h2>
     </div>
     <div class="contact-grid container">
       <div class="contact-info reveal">
@@ -1248,7 +1370,7 @@ const TIMELINE = [
 
 const BLOG = [
   { date: "Sep 2026", title: "Cómo aplico IA a ventas sin perder el toque humano", desc: "Mi enfoque para usar inteligencia artificial en ventas, leads y procesos — lo que funciona, lo que no, y cómo lo aplico con empresas y microempresas.", link: "blog/como-aplico-ia-ventas-sin-perder-el-toque-humano.html", draft: false },
-  { date: "Sep 2026", title: "Cómo usar IA para segmentar leads sin depender de un CRM caro", desc: "Tres formas prácticas de segmentar y priorizar leads usando herramientas de IA accesibles, sin comprar software costoso. Para empresas y microempresas.", link: "#", draft: false }
+  { date: "Sep 2026", title: "Cómo usar IA para segmentar leads sin depender de un CRM caro", desc: "Tres formas prácticas de segmentar y priorizar leads usando herramientas de IA accesibles, sin comprar software costoso. Para empresas y microempresas.", link: "blog/como-usar-ia-para-segmentar-leads-sin-depender-de-un-crm-caro.html", draft: false }
 ];
 
 /* ---------- Render portfolio ---------- */
@@ -1453,12 +1575,17 @@ if (contactForm && FORMSPREE_URL) {
   });
 }
 
-/* ---------- Smooth anchor fallback ---------- */
+/* ---------- Smooth anchor navigation — ROBUSTO ----------
+   Usa data-target explícito. Si no está presente, usa el href.
+   Prioriza el atributo data-target para evitar conflictos con
+   enlaces como #contact que puedan tener comportamiento especial.
+   */
 document.querySelectorAll('a[href^="#"]').forEach(function(a) {
   a.addEventListener('click', function(e) {
-    const id = a.getAttribute('href');
-    if (id.length > 1) {
-      const el = document.querySelector(id);
+    // Priorizar data-target explícito si existe
+    const targetId = a.getAttribute('data-target') || a.getAttribute('href');
+    if (targetId && targetId.length > 1) {
+      const el = document.querySelector(targetId);
       if (el) {
         e.preventDefault();
         el.scrollIntoView({ behavior: 'smooth', block: 'start' });
