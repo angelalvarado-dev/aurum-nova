@@ -33,15 +33,15 @@
    CEO Â· IA Â· Financiero Â· Escalable
    ============================================= */
 
-:root {\n  --bg-light: #ffffff;\n  --bg-2-light: #f8f9fa;\n  --bg-3-light: #f1f3f5;\n  --bg-card-light: #ffffff;\n  --bg-card-2-light: #f8f9fa;\n  --border-light: rgba(212, 175, 55, 0.1);\n  --border-strong-light: rgba(212, 175, 55, 0.3);\n  --border-glass-light: rgba(212, 175, 55, 0.05);\n  --gold-light: #b8860b;\n  --gold-2-light: #d4af37;\n  --gold-3-light: #b8962e;\n  --text-light: #212529;\n  --text-muted-light: #495057;\n  --text-dim-light: #6c757d;\n  --text-faint-light: #adb5bd;\n
-  --bg-dark: #050509; --bg-light: #ffffff; --bg: var(--bg-dark, #050509);
+:root {
+  --bg-dark: #050509; --bg-light: #ffffff; --bg: var(--bg-dark, #050509);\n  --bg-light: #ffffff;\n  --bg-2-light: #f8f9fa;\n  --bg-3-light: #f1f3f5;\n  --bg-card-light: #ffffff;\n  --bg-card-2-light: #f8f9fa;\n  --border-light: rgba(212, 175, 55, 0.1);\n  --border-strong-light: rgba(212, 175, 55, 0.3);\n  --border-glass-light: rgba(212, 175, 55, 0.05);\n  --gold-light: #b8860b;\n  --gold-2-light: #d4af37;\n  --gold-3-light: #b8962e;\n  --text-light: #212529;\n  --text-muted-light: #495057;\n  --text-dim-light: #6c757d;\n  --text-faint-light: #adb5bd;
   --bg-2-dark: #080810; --bg-2-light: #f8f9fa; --bg-2: var(--bg-2-dark, #080810);
   --bg-3-dark: #0b0b14; --bg-3-light: #f1f3f5; --bg-3: var(--bg-3-dark, #0b0b14);
   --bg-card-dark: #0d0d1a; --bg-card-light: #ffffff; --bg-card: var(--bg-card-dark, #0d0d1a);
   --bg-card-2-dark: #111123; --bg-card-2-light: #f8f9fa; --bg-card-2: var(--bg-card-2-dark, #111123);
-  --border: rgba(212, 175, 55, 0.14);
-  --border-strong: rgba(212, 175, 55, 0.42);
-  --border-glass: rgba(212, 175, 55, 0.10);
+  --border-dark: rgba(212, 175, 55, 0.14); --border-light: rgba(212, 175, 55, 0.1); --border: var(--border-dark, rgba(212, 175, 55, 0.14));
+  --border-strong-dark: rgba(212, 175, 55, 0.42); --border-strong-light: rgba(212, 175, 55, 0.3); --border-strong: var(--border-strong-dark, rgba(212, 175, 55, 0.42));
+  --border-glass-dark: rgba(212, 175, 55, 0.10); --border-glass-light: rgba(212, 175, 55, 0.05); --border-glass: var(--border-glass-dark, rgba(212, 175, 55, 0.10));
   --gold-dark: #d4af37; --gold-light: #b8860b; --gold: var(--gold-dark, #d4af37);
   --gold-2-dark: #e8c85a; --gold-2-light: #d4af37; --gold-2: var(--gold-2-dark, #e8c85a);
   --gold-3-dark: #b8962e; --gold-3-light: #b8962e; --gold-3: var(--gold-3-dark, #b8962e);
@@ -929,13 +929,274 @@ footer {
 }
 #mobileMenu a { padding: 11px 0; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: color .2s; }
 #mobileMenu a:hover { color: var(--gold); }
-\n/* =============================================\n   LIGHT THEME OVERRIDES\n   ============================================= */\n[data-theme="light"] {\n  --bg: #ffffff;\n  --bg-2: #f8f9fa;\n  --bg-3: #f1f3f5;\n  --bg-card: #ffffff;\n  --bg-card-2: #f8f9fa;\n  --border: rgba(212, 175, 55, 0.1);\n  --border-strong: rgba(212, 175, 55, 0.3);\n  --border-glass: rgba(212, 175, 55, 0.05);\n  --gold: #b8860b;\n  --gold-2: #d4af37;\n  --gold-3: #b8962e;\n  --text: #212529;\n  --text-muted: #495057;\n  --text-dim: #6c757d;\n  --text-faint: #adb5bd;\n  --bg-card: #ffffff;\n  --bg-card-2: #f8f9fa;\n}\n\n[data-theme="light"] body {\n  background: var(--bg);\n  color: var(--text);\n}\n\n</style>
+  </style>
+
+/* =============================================
+   LIGHT THEME OVERRIDES
+   ============================================= */
+[data-theme="light"] {
+  --bg: #ffffff;
+  --bg-2: #f8f9fa;
+  --bg-3: #f1f3f5;
+  --bg-card: #ffffff;
+  --bg-card-2: #f8f9fa;
+  --border: rgba(212, 175, 55, 0.1);
+  --border-strong: rgba(212, 175, 55, 0.3);
+  --border-glass: rgba(212, 175, 55, 0.05);
+  --gold: #b8860b;
+  --gold-2: #d4af37;
+  --gold-3: #b8962e;
+  --text: #212529;
+  --text-muted: #495057;
+  --text-dim: #6c757d;
+  --text-faint: #adb5bd;
+  --bg-card: #ffffff;
+  --bg-card-2: #f8f9fa;
+}
+
+[data-theme="light"] body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+[data-theme="light"] body::before {
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(212, 175, 55, 0.045) 0%, transparent 70%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
+}
+
+[data-theme="light"] body::after {
+  background: radial-gradient(ellipse 60% 40% at 80% 0%, rgba(79, 214, 224, 0.03) 0%, transparent 60%);
+}
+
+[data-theme="light"] ::selection {
+  background: var(--gold);
+  color: #ffffff;
+}
+
+[data-theme="light"] .hero-badge {
+  background: rgba(212, 175, 55, 0.07);
+  border: 1px solid rgba(212, 175, 55, 0.20);
+}
+
+[data-theme="light"] .hero-badge:hover {
+  background: rgba(212, 175, 55, 0.12);
+  border-color: var(--border-strong);
+}
+
+[data-theme="light"] .hero-badge .dot {
+  background: var(--gold);
+}
+
+[data-theme="light"] .hero-meta span:hover {
+  background: rgba(212, 175, 55, 0.06);
+}
+
+[data-theme="light"] .btn-primary {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-3) 100%);
+  color: #050509;
+}
+
+[data-theme="light"] .btn-primary::after {
+  background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.32), transparent 50%);
+}
+
+[data-theme="light"] .btn-primary:hover {
+  box-shadow: 0 12px 36px -8px var(--gold-glow), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+[data-theme="light"] .btn-ghost {
+  background: rgba(212, 175, 55, 0.04);
+  color: var(--gold);
+  border: 1px solid var(--border-strong);
+  backdrop-filter: blur(4px);
+}
+
+[data-theme="light"] .btn-ghost:hover {
+  background: rgba(212, 175, 55, 0.10);
+  border-color: var(--gold);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px -12px rgba(212, 175, 55, 0.2);
+}
+
+[data-theme="light"] .nav-links a:hover {
+  color: var(--text);
+}
+
+[data-theme="light"] .nav-links a:hover::after {
+  width: 100%;
+}
+
+[data-theme="light"] .nav-links a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+  border-radius: 2px;
+  color: var(--text);
+}
+
+[data-theme="light"] .menu-toggle:hover {
+  border-color: var(--border-strong);
+}
+
+[data-theme="light"] .hero-visual .portrait-frame {
+  border: 1px solid rgba(212, 175, 55, 0.18);
+}
+
+[data-theme="light"] .hero-visual .portrait-frame::after {
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.45),
+    0 0 30px -8px rgba(212, 175, 55, 0.12);
+}
+
+[data-theme="light"] .stat {
+  border: 1px solid var(--border);
+}
+
+[data-theme="light"] .stat:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 36px -16px rgba(212, 175, 55, 0.16);
+}
+
+[data-theme="light"] .service-card {
+  border: 1px solid var(--border);
+}
+
+[data-theme="light"] .service-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 48px -20px rgba(212, 175, 55, 0.18);
+}
+
+[data-theme="light"] .service-card::after {
+  opacity: 0.4; transition: opacity .3s;
+}
+
+[data-theme="light"] .service-card:hover::after {
+  opacity: 0.7;
+}
+
+[data-theme="light"] .project-card {
+  border: 1px solid var(--border);
+}
+
+[data-theme="light"] .project-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 44px -20px rgba(212, 175, 55, 0.14);
+}
+
+[data-theme="light"] .timeline-item.done .timeline-dot {
+  background: radial-gradient(circle at 35% 35%, var(--gold-2), var(--gold-3));
+  border-color: var(--gold);
+  box-shadow: 0 0 14px -2px var(--gold-glow);
+}
+
+[data-theme="light"] .timeline-item.done .status {
+  border-color: rgba(212, 175, 55, 0.25);
+  color: var(--gold);
+}
+
+[data-theme="light"] .timeline-item.done .status .s-dot {
+  background: var(--gold);
+  box-shadow: 0 0 6px var(--gold-glow);
+}
+
+[data-theme="light"] .blog-item {
+  border: 1px solid var(--border);
+}
+
+[data-theme="light"] .blog-item:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px -16px rgba(212, 175, 55, 0.12);
+}
+
+[data-theme="light"] .blog-item:hover::before {
+  height: 100%;
+}
+
+[data-theme="light"] .contact-item .ic {
+  background: var(--gold-soft);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+}
+
+[data-theme="light"] .form-card {
+  border: 1px solid var(--border);
+}
+
+[data-theme="light"] .form-card:hover {
+  border-color: var(--border-strong);
+}
+
+[data-theme="light"] .footer-brand {
+  color: var(--text);
+}
+
+[data-theme="light"] .footer-brand .mark {
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.2), transparent 50%),
+    linear-gradient(135deg, var(--gold-2), var(--gold-3));
+  color: #050509;
+}
+
+[data-theme="light"] .footer-copy {
+  color: var(--text-dim);
+}
+
+[data-theme="light"] .footer-links a:hover {
+  color: var(--gold);
+}
+
+[data-theme="light"] .footer-links a:hover::after {
+  width: 100%;
+}
+
+[data-theme="light"] .footer-links a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+  border-radius: 2px;
+  color: var(--text);
+}
+
+[data-theme="light"] .footer-links a.license-badge:hover {
+  color: var(--gold);
+  border-color: var(--border-strong);
+  text-decoration: none;
+}
+
+[data-theme="light"] .wa-float {
+  background: linear-gradient(135deg, var(--gold-2) 0%, var(--gold-3) 100%);
+  box-shadow: 0 6px 24px -4px rgba(212, 175, 55, 0.5), 0 0 0 4px rgba(5, 5, 9, 0.85);
+}
+
+[data-theme="light"] .wa-float:hover {
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 10px 32px -4px rgba(212, 175, 55, 0.65), 0 0 0 4px rgba(5, 5, 9, 0.85);
+}
+
+[data-theme="light"] .glow-corner.tl {
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.09), transparent 70%);
+}
+
+[data-theme="light"] .glow-corner.br {
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.07), transparent 70%);
+}
+
+[data-theme="light"] .reveal { opacity: 1; transform: none; }
+[data-theme="light"] .hero-badge .dot { animation: none; }
+[data-theme="light"] html { scroll-behavior: auto; }
 </head>
 <body>
 
 <!-- NAV -->
 <nav role="navigation" aria-label="NavegaciÃ³n principal">
-  <div class="nav-inner">\n    <button id="themeToggle" class="btn btn-ghost" aria-label="Cambiar tema" title="Cambiar entre tema oscuro y claro">\n      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">\n        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>\n      </svg>\n    </button>
+  <div class="nav-inner">
+    <button id="themeToggle" class="btn btn-ghost" aria-label="Cambiar tema" title="Cambiar entre tema oscuro y claro">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+      </svg>
+    </button>
     <a href="#top" class="brand" aria-label="AURUM NOVA">
       <span class="mark">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1626,11 +1887,11 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
       if (newTheme === "dark") {
         icon.setAttribute("d", "M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z");
       } else {
-        icon.setAttribute("d", "M12 3a1 1 0 000 2h6a4 4 0 010 8H6a4 4 0 010-8h6a1 1 0 100-2zM13 19h-1a2 2 0 01-1.433-.83l-.83-1.433A2 2 0 015 11V8a2 2 0 012-2h1a2 2 0 012 2v2a2 2 0 01-1 1.433L12 16l-1.166 1.166A2 2 0 0110 15v2a2 2 0 01-2 2H8a2 2 0 01-2-2v-2a2 2 0 011-1.433l1.166-1.166A2 2 0 0111 9h1a2 2 0 012 2v2z");
+        icon.setAttribute("d", "M12 3a1 1 0 000 2h6a4 4 0 010 8H6a4 4 0 010-8h6a1 1 0 100-2zM13 19h-1a2 2 0 01-1.433-.83l-.83-1.433A2 2 0 015 11V8a2 2 0 012-2h1a2 2 0 012 2v2a2 2 0 01-1 1.433L12 16l-1.166 1.166A2 2 0 0110 15v2a2 2 0 01-2 2H8a2 2 0 01-2-2v-2a2 2 0 01-2-2v-2a2 2 0 011-1.433l1.166-1.166A2 2 0 0111 9h1a2 2 0 012 2v2z");
       }
     });
     </script>
-<!-- WHATSAPP FLOATING BUTTON -->
+    <script>\n    // ---------- Theme switcher ----------\n    const themeToggle = document.getElementById("themeToggle");\n    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");\n    const currentTheme = localStorage.getItem("theme");\n\n    // Set initial theme\n    const setTheme = (theme) => {\n      document.documentElement.setAttribute("data-theme", theme);\n      localStorage.setItem("theme", theme);\n    };\n\n    // Initialize theme\n    if (currentTheme) {\n      setTheme(currentTheme);\n    } else {\n      setTheme(prefersDark.matches ? "dark" : "light");\n    }\n\n    // Toggle theme\n    themeToggle.addEventListener("click", () => {\n      const current = document.documentElement.getAttribute("data-theme");\n      const newTheme = current === "dark" ? "light" : "dark";\n      setTheme(newTheme);\n      \n      // Update icon (sun/moon)\n      const icon = themeToggle.querySelector("path");\n      if (newTheme === "dark") {\n        icon.setAttribute("d", "M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z");\n      } else {\n        icon.setAttribute("d", "M12 3a1 1 0 000 2h6a4 4 0 010 8H6a4 4 0 010-8h6a1 1 0 100-2zM13 19h-1a2 2 0 01-1.433-.83l-.83-1.433A2 2 0 015 11V8a2 2 0 012-2h1a2 2 0 012 2v2a2 2 0 01-1 1.433L12 16l-1.166 1.166A2 2 0 0110 15v2a2 2 0 01-2 2H8a2 2 0 01-2-2v-2a2 2 0 01-2-2v-2a2 2 0 011-1.433l1.166-1.166A2 2 0 0111 9h1a2 2 0 012 2v2z");\n      }\n    });\n    </script>\n<!-- WHATSAPP FLOATING BUTTON -->
 
 <a href="https://wa.me/593994195932?text=Hola%20Angel%2C%20me%20interesa%20tu%20servicio"
    class="wa-float" target="_blank" rel="noopener"
@@ -1643,9 +1904,4 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
 
 </body>
 </html>
-
-
-
-
-
 
