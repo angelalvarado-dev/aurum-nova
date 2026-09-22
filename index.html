@@ -875,92 +875,100 @@ footer {
    ============================================= */
 
 #vision {
-  position: relative; overflow: hidden;
+  position: relative;
+  overflow: hidden;
   background: var(--bg-2);
+  min-height: 520px;
 }
 
 .vision-bg {
-  position: absolute; inset: -20%;
+  position: absolute;
+  inset: 0;
   background-image: url('aurum-nova-banner.png');
-  background-size: cover;
-  background-position: center 30%;
+  background-size: contain;
+  background-position: center center;
   background-repeat: no-repeat;
-  opacity: 0.65;
+  opacity: 0.28;
   z-index: 0;
   transition: opacity .6s ease;
 }
 
 .vision-overlay {
-  position: absolute; inset: 0;
+  position: absolute;
+  inset: 0;
   background:
-    radial-gradient(ellipse 80% 50% at 50% 30%, rgba(5, 5, 9, 0.88) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 60% at 50% 40%, rgba(8, 8, 16, 0.40) 0%, transparent 75%),
     linear-gradient(180deg,
-      rgba(5, 5, 9, 0.92) 0%,
-      rgba(5, 5, 9, 0.65) 40%,
-      rgba(5, 5, 9, 0.92) 100%
+      rgba(5, 5, 9, 0.88) 0%,
+      rgba(5, 5, 9, 0.45) 50%,
+      rgba(5, 5, 9, 0.80) 100%
     );
   z-index: 1;
   pointer-events: none;
 }
 
 .vision-content {
-  position: relative; z-index: 2;
-  padding: 80px 0 100px;
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 80px 28px 90px;
 }
 
 .vision-header {
   text-align: center;
   max-width: 680px;
-  margin: 0 auto 56px;
+  margin: 0 auto 48px;
 }
 
 .vision-lead {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--text-muted);
-  margin-bottom: 56px;
+  margin-bottom: 48px;
   line-height: 1.7;
 }
 
 .vision-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 24px;
+  gap: 20px;
 }
 
 @media(min-width: 760px) {
-  .vision-grid { grid-template-columns: 1fr 1fr 1fr; gap: 32px; }
+  .vision-content { padding: 90px 28px 100px; }
+  .vision-grid { grid-template-columns: 1fr 1fr 1fr; gap: 28px; }
 }
 
 .vision-card {
-  background: linear-gradient(180deg, rgba(13, 13, 26, 0.85) 0%, rgba(11, 11, 20, 0.75) 100%);
-  border: 1px solid rgba(212, 175, 55, 0.18);
+  background: linear-gradient(180deg, rgba(13, 13, 26, 0.92) 0%, rgba(11, 11, 20, 0.82) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.16);
   border-radius: var(--radius);
-  padding: 30px;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  padding: 28px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   transition: border-color .3s, transform .3s, box-shadow .3s;
 }
 
 .vision-card:hover {
-  border-color: rgba(212, 175, 55, 0.40);
+  border-color: rgba(212, 175, 55, 0.38);
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px -16px rgba(212, 175, 55, 0.12);
+  box-shadow: 0 16px 40px -16px rgba(212, 175, 55, 0.10);
 }
 
 .vision-card-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: rgba(212, 175, 55, 0.08);
-  border: 1px solid rgba(212, 175, 55, 0.22);
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
+  background: rgba(212, 175, 55, 0.07);
+  border: 1px solid rgba(212, 175, 55, 0.20);
   display: grid;
   place-items: center;
   color: var(--gold);
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 .vision-card h3 {
-  font-size: 1.12rem;
+  font-size: 1.08rem;
   color: var(--gold);
   font-family: var(--serif);
   font-style: italic;
@@ -968,14 +976,14 @@ footer {
 }
 
 .vision-card p {
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   color: var(--text-muted);
   line-height: 1.6;
 }
 
 .vision-cta {
   text-align: center;
-  margin-top: 48px;
+  margin-top: 40px;
 }
 
 /* Light theme overrides */
