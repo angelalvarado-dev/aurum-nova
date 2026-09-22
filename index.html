@@ -871,6 +871,132 @@ footer {
 .glow-corner.br { bottom: -110px; right: -110px; border-radius: 50%; background: radial-gradient(circle, rgba(212, 175, 55, 0.07), transparent 70%); }
 
 /* =============================================
+   VISIÓN — banner de fondo + overlay
+   ============================================= */
+
+#vision {
+  position: relative; overflow: hidden;
+  background: var(--bg-2);
+}
+
+.vision-bg {
+  position: absolute; inset: -20%;
+  background-image: url('aurum-nova-banner.png');
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  opacity: 0.65;
+  z-index: 0;
+  transition: opacity .6s ease;
+}
+
+.vision-overlay {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 30%, rgba(5, 5, 9, 0.88) 0%, transparent 70%),
+    linear-gradient(180deg,
+      rgba(5, 5, 9, 0.92) 0%,
+      rgba(5, 5, 9, 0.65) 40%,
+      rgba(5, 5, 9, 0.92) 100%
+    );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.vision-content {
+  position: relative; z-index: 2;
+  padding: 80px 0 100px;
+}
+
+.vision-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 56px;
+}
+
+.vision-lead {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 56px;
+  line-height: 1.7;
+}
+
+.vision-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media(min-width: 760px) {
+  .vision-grid { grid-template-columns: 1fr 1fr 1fr; gap: 32px; }
+}
+
+.vision-card {
+  background: linear-gradient(180deg, rgba(13, 13, 26, 0.85) 0%, rgba(11, 11, 20, 0.75) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: var(--radius);
+  padding: 30px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: border-color .3s, transform .3s, box-shadow .3s;
+}
+
+.vision-card:hover {
+  border-color: rgba(212, 175, 55, 0.40);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px -16px rgba(212, 175, 55, 0.12);
+}
+
+.vision-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  margin-bottom: 18px;
+}
+
+.vision-card h3 {
+  font-size: 1.12rem;
+  color: var(--gold);
+  font-family: var(--serif);
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.vision-card p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.vision-cta {
+  text-align: center;
+  margin-top: 48px;
+}
+
+/* Light theme overrides */
+[data-theme="light"] #vision {
+  background: var(--bg-2-light);
+}
+
+[data-theme="light"] .vision-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(248, 249, 250, 0.85) 100%);
+  border-color: rgba(212, 175, 55, 0.14);
+}
+
+[data-theme="light"] .vision-card h3 {
+  color: var(--gold-2-light);
+}
+
+[data-theme="light"] .vision-card p {
+  color: var(--text-muted-light);
+}
+
+/* =============================================
    RESPONSIVE
    ============================================= */
 
@@ -1560,6 +1686,60 @@ footer {
   </div>
 </section>
 
+<!-- VISIÓN / FUTURO -->
+<section id="vision">
+  <div class="wrap">
+    <div class="vision-bg"></div>
+    <div class="vision-overlay"></div>
+    <div class="vision-content container">
+      <div class="vision-header reveal">
+        <div class="gold-line"></div>
+        <div class="eyebrow">Visión</div>
+        <h2>Ideas / Tecnología / Futuro</h2>
+        <p class="vision-lead">
+          Cada progreso empieza con una idea y una tecnología que la hace posible. En AURUM NOVA trabajamos en la intersección de ambas: inteligencia artificial, estrategia y ejecución, para construir el futuro de las empresas y microempresas.
+        </p>
+      </div>
+      <div class="vision-grid">
+        <div class="vision-card reveal">
+          <div class="vision-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+            </svg>
+          </div>
+          <h3>Ideas</h3>
+          <p>Identificamos oportunidades donde la tecnología puede resolver problemas reales de ventas, procesos y crecimiento. No seguimos modas: elegimos las ideas que tienen impacto medible.</p>
+        </div>
+        <div class="vision-card reveal">
+          <div class="vision-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+              <path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01"></path>
+            </svg>
+          </div>
+          <h3>Tecnología</h3>
+          <p>Usamos inteligencia artificial, automatización y datos para transformar esas ideas en sistemas funcionales. Configuraciones, flujos de trabajo, prompts avanzados y documentación que perdura.</p>
+        </div>
+        <div class="vision-card reveal">
+          <div class="vision-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></path>
+            </svg>
+          </div>
+          <h3>Futuro</h3>
+          <p>El objetivo no es solo resolver hoy: es construir la base para que las empresas sigan creciendo mañana. Estructura escalable, procesos documentados y resultados que se sostienen en el tiempo.</p>
+        </div>
+      </div>
+      <div class="vision-cta reveal">
+        <a href="#contact" class="btn btn-ghost">Sugerir una idea →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SERVICES -->
 <section id="services">
   <div class="wrap">
@@ -1799,6 +1979,7 @@ footer {
         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aurum.nova.business@gmail.com&su=&body=">Email</a>
         <a href="https://wa.me/593994195932" target="_blank" rel="noopener">WhatsApp</a>
         <a href="https://github.com/aurum-ceo" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/angel-santiago-alvarado-rodriguez-647428423/" target="_blank" rel="noopener">LinkedIn</a>
         <a href="#about">Sobre mí</a>
         <a href="#services">Servicios</a>
         <a href="#portfolio">Portafolio</a>
